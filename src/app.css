@@ -3,16 +3,16 @@
 /* ── CAUI Design Tokens ── */
 @layer base {
   :root {
-    /* Surface & Base */
-    --ca-surface: #0a0a0c;
-    --ca-surface-elevated: #121217;
-    --ca-surface-subtle: #18181f;
-    --ca-border: #272732;
+    /* Light mode (default) — tokens untuk tampilan terang */
+    --ca-surface: #ffffff;
+    --ca-surface-elevated: #f5f5f5;
+    --ca-surface-subtle: #f0f0f0;
+    --ca-border: #e5e5e5;
 
     /* Typography & Foreground */
-    --ca-text-primary: #ededed;
-    --ca-text-secondary: #a1a1aa;
-    --ca-text-muted: #71717a;
+    --ca-text-primary: #171717;
+    --ca-text-secondary: #525252;
+    --ca-text-muted: #737373;
 
     /* Dynamic Brand / Pro Accent */
     --ca-brand: #06b6d4;
@@ -27,6 +27,19 @@
     --ca-radius-md: 8px;
     --ca-radius-lg: 12px;
     --ca-radius-xl: 16px;
+  }
+
+  .dark {
+    /* Dark mode — override tokens ke nilai gelap */
+    --ca-surface: #0a0a0c;
+    --ca-surface-elevated: #121217;
+    --ca-surface-subtle: #18181f;
+    --ca-border: #272732;
+
+    /* Typography & Foreground */
+    --ca-text-primary: #ededed;
+    --ca-text-secondary: #a1a1aa;
+    --ca-text-muted: #71717a;
   }
 }
 
@@ -57,6 +70,10 @@ button, input, textarea, a, select, [role="button"], .no-drag {
   --sab: env(safe-area-inset-bottom, 0px);
   --sal: env(safe-area-inset-left, 0px);
   --sar: env(safe-area-inset-right, 0px);
+  color-scheme: light;
+}
+
+.dark {
   color-scheme: dark;
 }
 

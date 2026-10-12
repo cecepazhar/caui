@@ -49,30 +49,42 @@
     brandColor = hex;
     if (typeof document !== 'undefined') {
       document.documentElement.style.setProperty('--ca-brand', hex);
+      localStorage.setItem('ca-brand', hex);
     }
   }
 
   onMount(() => {
-    setBrand(brandColor);
+    // Load saved brand & theme on page load
+    const savedBrand = localStorage.getItem('ca-brand');
+    if (savedBrand) {
+      setBrand(savedBrand);
+    }
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
   });
 </script>
 
-<div class="min-h-screen flex flex-col bg-white dark:bg-[#0A0A0C] text-neutral-900 dark:text-[#EDEDED] font-sans antialiased selection:bg-[var(--ca-brand)] selection:text-white transition-colors duration-200">
+<div class="min-h-screen flex flex-col bg-[var(--ca-surface)] text-[var(--ca-text-primary)] font-sans antialiased selection:bg-[var(--ca-brand)] selection:text-white transition-colors duration-200">
   <!-- Topbar -->
-  <header class="sticky top-0 z-40 border-b border-neutral-200 dark:border-[#272732] bg-white/90 dark:bg-[#0A0A0C]/90 backdrop-blur-md px-6 py-4 flex items-center justify-between max-w-7xl w-full mx-auto">
+  <header class="sticky top-0 z-40 border-b border-[var(--ca-border)] bg-[var(--ca-surface)]/90 backdrop-blur-md px-6 py-4 flex items-center justify-between max-w-7xl w-full mx-auto">
     <div class="flex items-center gap-6">
       <a href="/" class="flex items-center gap-3 group">
         <Logo size={32} mode="brand" />
         <div class="flex flex-col text-left">
-          <span class="font-bold text-sm tracking-tight text-neutral-900 dark:text-white group-hover:text-[var(--ca-brand)] dark:group-hover:text-[var(--ca-brand)] transition">CAUI</span>
-          <span class="text-[10px] font-mono text-neutral-500">The UI Foundation of the CA Ecosystem</span>
+          <span class="font-bold text-sm tracking-tight group-hover:text-[var(--ca-brand)] transition">CAUI</span>
+          <span class="text-[10px] font-mono text-[var(--ca-text-muted)]">The UI Foundation of the CA Ecosystem</span>
         </div>
       </a>
-      <nav class="hidden md:flex items-center gap-6 text-xs font-medium text-neutral-500 dark:text-neutral-400">
-        <a href="/docs" class="hover:text-neutral-900 dark:hover:text-white transition">Documentation</a>
-        <a href="/docs/components" class="hover:text-neutral-900 dark:hover:text-white transition">Components</a>
-        <a href="/docs/tokens" class="hover:text-neutral-900 dark:hover:text-white transition">Tokens</a>
-        <a href="/docs/installation" class="hover:text-neutral-900 dark:hover:text-white transition">Installation</a>
+      <nav class="hidden md:flex items-center gap-6 text-xs font-medium text-[var(--ca-text-muted)]">
+        <a href="/docs" class="hover:text-[var(--ca-text-primary)] transition">Documentation</a>
+        <a href="/docs/components" class="hover:text-[var(--ca-text-primary)] transition">Components</a>
+        <a href="/docs/tokens" class="hover:text-[var(--ca-text-primary)] transition">Tokens</a>
+        <a href="/docs/installation" class="hover:text-[var(--ca-text-primary)] transition">Installation</a>
       </nav>
     </div>
     <div class="flex items-center gap-3">

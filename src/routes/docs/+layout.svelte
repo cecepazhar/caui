@@ -67,22 +67,22 @@
   ];
 </script>
 
-<div class="min-h-screen flex flex-col bg-white dark:bg-[#0A0A0C] text-neutral-900 dark:text-[#EDEDED] font-sans antialiased selection:bg-[var(--ca-brand)] selection:text-white transition-colors duration-200">
+<div class="min-h-screen flex flex-col bg-[var(--ca-surface)] text-[var(--ca-text-primary)] font-sans antialiased selection:bg-[var(--ca-brand)] selection:text-white transition-colors duration-200">
   <!-- Topbar -->
-  <header class="sticky top-0 z-40 border-b border-neutral-200 dark:border-[#272732] bg-white/90 dark:bg-[#0A0A0C]/90 backdrop-blur-md px-6 py-4 flex items-center justify-between max-w-7xl w-full mx-auto">
+  <header class="sticky top-0 z-40 border-b border-[var(--ca-border)] bg-[var(--ca-surface)]/90 backdrop-blur-md px-6 py-4 flex items-center justify-between max-w-7xl w-full mx-auto">
     <div class="flex items-center gap-6">
       <a href="/" class="flex items-center gap-3 group">
         <Logo size={32} mode="brand" />
         <div class="flex flex-col text-left">
-          <span class="font-bold text-sm tracking-tight text-neutral-900 dark:text-white group-hover:text-[var(--ca-brand)] dark:group-hover:text-[var(--ca-brand)] transition">CAUI</span>
-          <span class="text-[10px] font-mono text-neutral-500">The UI Foundation of the CA Ecosystem</span>
+          <span class="font-bold text-sm tracking-tight group-hover:text-[var(--ca-brand)] transition">CAUI</span>
+          <span class="text-[10px] font-mono text-[var(--ca-text-muted)]">The UI Foundation of the CA Ecosystem</span>
         </div>
       </a>
-      <nav class="hidden md:flex items-center gap-6 text-xs font-medium text-neutral-500 dark:text-neutral-400">
-        <a href="/docs" class="text-neutral-900 dark:text-white font-semibold">Documentation</a>
-        <a href="/docs/components" class="hover:text-neutral-900 dark:hover:text-white transition">Components</a>
-        <a href="/docs/tokens" class="hover:text-neutral-900 dark:hover:text-white transition">Tokens</a>
-        <a href="/docs/installation" class="hover:text-neutral-900 dark:hover:text-white transition">Installation</a>
+      <nav class="hidden md:flex items-center gap-6 text-xs font-medium text-[var(--ca-text-muted)]">
+        <a href="/docs" class="text-[var(--ca-text-primary)] font-semibold">Documentation</a>
+        <a href="/docs/components" class="hover:text-[var(--ca-text-primary)] transition">Components</a>
+        <a href="/docs/tokens" class="hover:text-[var(--ca-text-primary)] transition">Tokens</a>
+        <a href="/docs/installation" class="hover:text-[var(--ca-text-primary)] transition">Installation</a>
       </nav>
     </div>
     <div class="flex items-center gap-3">
@@ -94,17 +94,17 @@
   <!-- Docs Shell -->
   <div class="flex-1 flex max-w-7xl w-full mx-auto">
     <!-- Sidebar -->
-    <aside class="w-64 shrink-0 border-r border-[#272732] p-6 hidden lg:block overflow-y-auto max-h-[calc(100vh-57px)] sticky top-[57px]">
+    <aside class="w-64 shrink-0 border-r border-[var(--ca-border)] p-6 hidden lg:block overflow-y-auto max-h-[calc(100vh-57px)] sticky top-[57px]">
       <div class="space-y-6">
         {#each navCategories as cat (cat.title)}
           <div>
-            <h4 class="text-[11px] font-mono uppercase tracking-wider text-neutral-500 font-semibold mb-2">{cat.title}</h4>
+            <h4 class="text-[11px] font-mono uppercase tracking-wider text-[var(--ca-text-muted)] font-semibold mb-2">{cat.title}</h4>
             <ul class="space-y-1">
               {#each cat.items as item (item.href)}
                 <li>
                   <a
                     href={item.href}
-                    class="block px-2.5 py-1.5 text-xs rounded-md text-neutral-400 hover:text-white hover:bg-neutral-900 transition font-medium"
+                    class="block px-2.5 py-1.5 text-xs rounded-md text-[var(--ca-text-secondary)] hover:text-[var(--ca-text-primary)] hover:bg-[var(--ca-surface-subtle)] transition font-medium"
                   >
                     {item.label}
                   </a>

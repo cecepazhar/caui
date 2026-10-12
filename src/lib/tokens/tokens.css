@@ -1,19 +1,19 @@
 /* CAUI Master Theme Tokens — 17 CA Applications Ecosystem */
 
 :root {
-  /* Canvas & Surfaces (Pure Pitch Black / Sovereign Tech-Brutalist HUD) */
-  --ca-canvas: #09090b;
-  --ca-surface: #0a0a0c;
-  --ca-surface-base: #0a0a0c;
-  --ca-surface-elevated: #121217;
-  --ca-surface-subtle: #18181f;
-  --ca-border: #272732;
-  --ca-border-hover: #3f3f46;
+  /* Canvas & Surfaces (Light mode default) */
+  --ca-canvas: #f8fafc;
+  --ca-surface: #ffffff;
+  --ca-surface-base: #ffffff;
+  --ca-surface-elevated: #f1f5f9;
+  --ca-surface-subtle: #e2e8f0;
+  --ca-border: #cbd5e1;
+  --ca-border-hover: #94a3b8;
 
   /* Typography & Foreground */
-  --ca-text-primary: #ededed;
-  --ca-text-secondary: #a1a1aa;
-  --ca-text-muted: #71717a;
+  --ca-text-primary: #0f172a;
+  --ca-text-secondary: #475569;
+  --ca-text-muted: #64748b;
 
   /* Dynamic Brand / Pro Accent (Default Rose / Crimson) */
   --ca-brand: #ef4444;
@@ -30,6 +30,22 @@
   --ca-radius-md: 8px;
   --ca-radius-lg: 12px;
   --ca-radius-xl: 16px;
+}
+
+.dark {
+  /* Canvas & Surfaces (Dark mode) */
+  --ca-canvas: #09090b;
+  --ca-surface: #0a0a0c;
+  --ca-surface-base: #0a0a0c;
+  --ca-surface-elevated: #121217;
+  --ca-surface-subtle: #18181f;
+  --ca-border: #272732;
+  --ca-border-hover: #3f3f46;
+
+  /* Typography & Foreground */
+  --ca-text-primary: #ededed;
+  --ca-text-secondary: #a1a1aa;
+  --ca-text-muted: #71717a;
 }
 
 /* 17 CA App Specific Themes */
