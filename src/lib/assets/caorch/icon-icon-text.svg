@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="symbolGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FB7185" />
+      <stop offset="100%" stop-color="#F43F5E" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F43F5E" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#F43F5E" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background squircle -->
+  <rect x="24" y="24" width="464" height="464" rx="112" fill="#0A0A0C" stroke="#F43F5E" stroke-width="4" stroke-opacity="0.35"/>
+
+  <g transform="translate(256, 185) scale(0.72) translate(-256, -256)">
+    <circle cx="256" cy="256" r="200" fill="url(#glow)"/>
+    <g fill="none">
+      
+    <!-- Outer Sentinel Cluster Hexagon -->
+    <!-- Points at R=155: (256,101), (390,178), (390,334), (256,411), (122,334), (122,178) -->
+    <polygon points="256,101 390,178 390,334 256,411 122,334 122,178"
+             stroke="url(#symbolGrad)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- High-Impact Health Probe & Telemetry Heartbeat Wave -->
+    <path d="M122 256 H185 L215 180 L256 332 L297 180 L327 256 H390"
+          stroke="#FFFFFF" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Active Watchdog Node Pings at Key Vertices -->
+    <circle cx="256" cy="101" r="14" fill="#FFFFFF"/>
+    <circle cx="256" cy="411" r="14" fill="#FFFFFF"/>
+        
+    </g>
+  </g>
+
+  <text x="256" y="390" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif" font-size="38" font-weight="800" fill="#FFFFFF" letter-spacing="0.5">CAOrch</text>
+  <text x="256" y="425" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif" font-size="16" font-weight="500" fill="#94A3B8" letter-spacing="0.2">Autonomous Infrastructure Orchestrator</text>
+</svg>

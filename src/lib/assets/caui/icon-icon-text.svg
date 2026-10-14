@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="symbolGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#E2E8F0" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E2E8F0" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#E2E8F0" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background squircle -->
+  <rect x="24" y="24" width="464" height="464" rx="112" fill="#0A0A0C" stroke="#E2E8F0" stroke-width="4" stroke-opacity="0.35"/>
+
+  <g transform="translate(256, 185) scale(0.72) translate(-256, -256)">
+    <circle cx="256" cy="256" r="200" fill="url(#glow)"/>
+    <g fill="none">
+      
+    <!-- UI Component Grid Frame -->
+    <rect x="110" y="110" width="292" height="292" rx="36" fill="none" stroke="url(#symbolGrad)" stroke-width="18" stroke-dasharray="24 16"/>
+    
+    <!-- Dual Wings Crest Mini -->
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M225 180 L145 220 V270 L225 310 V255 L200 245 L225 235 V180 Z" fill="url(#symbolGrad)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M287 180 L367 220 V270 L287 310 V255 L312 245 L287 235 V180 Z" fill="url(#symbolGrad)"/>
+    
+    <!-- Central Component Block -->
+    <rect x="238" y="238" width="36" height="36" rx="8" fill="#FFFFFF"/>
+        
+    </g>
+  </g>
+
+  <text x="256" y="390" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif" font-size="38" font-weight="800" fill="#FFFFFF" letter-spacing="0.5">CAUI</text>
+  <text x="256" y="425" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif" font-size="16" font-weight="500" fill="#94A3B8" letter-spacing="0.2">Sovereign Design System & Core UI</text>
+</svg>

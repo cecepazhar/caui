@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="symbolGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2DD4BF" />
+      <stop offset="100%" stop-color="#0F766E" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2DD4BF" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#2DD4BF" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background Squircle Light -->
+  <rect x="24" y="24" width="464" height="464" rx="112" fill="#F8FAFC" stroke="rgba(0, 0, 0, 0.08)" stroke-width="4"/>
+
+  <!-- Ambient Glow Light -->
+  <circle cx="256" cy="256" r="200" fill="url(#glow)"/>
+
+  <!-- Main Symbol Glyph Light -->
+  <g fill="none">
+    
+    <path d="M200 120 A 145 145 0 1 1 312 120" fill="none" stroke="url(#symbolGrad)" stroke-width="24" stroke-linecap="round"/>
+    <circle cx="200" cy="120" r="14" fill="#0F766E"/>
+    <circle cx="312" cy="120" r="14" fill="url(#symbolGrad)"/>
+    
+    <path d="M165 210 Q 210 180 256 210 T 347 210" fill="none" stroke="url(#symbolGrad)" stroke-width="22" stroke-linecap="round"/>
+    <path d="M140 256 Q 198 220 256 256 T 372 256" fill="none" stroke="#0F766E" stroke-width="24" stroke-linecap="round"/>
+    <path d="M165 302 Q 210 272 256 302 T 347 302" fill="none" stroke="url(#symbolGrad)" stroke-width="22" stroke-linecap="round"/>
+    
+    <circle cx="256" cy="256" r="10" fill="#0D9488"/>
+        
+  </g>
+</svg>

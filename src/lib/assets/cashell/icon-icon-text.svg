@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="symbolGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ADE80" />
+      <stop offset="100%" stop-color="#22C55E" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#22C55E" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#22C55E" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background squircle -->
+  <rect x="24" y="24" width="464" height="464" rx="112" fill="#0A0A0C" stroke="#22C55E" stroke-width="4" stroke-opacity="0.35"/>
+
+  <g transform="translate(256, 185) scale(0.72) translate(-256, -256)">
+    <circle cx="256" cy="256" r="200" fill="url(#glow)"/>
+    <g fill="none">
+      
+    <!-- Dual Shell Command Chevrons '>>' + Execution Cursor '_' -->
+    <!-- First Chevron -->
+    <path d="M115 152 L220 256 L115 360"
+          stroke="url(#symbolGrad)" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Second Chevron (Accelerated Shell Stream) -->
+    <path d="M215 152 L320 256 L215 360"
+          stroke="url(#symbolGrad)" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Solid White Terminal Cursor Line -->
+    <line x1="338" y1="360" x2="408" y2="360"
+          stroke="#FFFFFF" stroke-width="32" stroke-linecap="round"/>
+        
+    </g>
+  </g>
+
+  <text x="256" y="390" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif" font-size="38" font-weight="800" fill="#FFFFFF" letter-spacing="0.5">CAShell</text>
+  <text x="256" y="425" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif" font-size="16" font-weight="500" fill="#94A3B8" letter-spacing="0.2">Universal CLI & Ecosystem Shell</text>
+</svg>

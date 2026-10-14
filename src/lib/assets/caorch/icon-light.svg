@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="symbolGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F43F5E" />
+      <stop offset="100%" stop-color="#BE123C" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F43F5E" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#F43F5E" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background Squircle Light -->
+  <rect x="24" y="24" width="464" height="464" rx="112" fill="#F8FAFC" stroke="rgba(0, 0, 0, 0.08)" stroke-width="4"/>
+
+  <!-- Ambient Glow Light -->
+  <circle cx="256" cy="256" r="200" fill="url(#glow)"/>
+
+  <!-- Main Symbol Glyph Light -->
+  <g fill="none">
+    
+    <polygon points="256,101 390,178 390,334 256,411 122,334 122,178"
+             stroke="url(#symbolGrad)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M122 256 H185 L215 180 L256 332 L297 180 L327 256 H390"
+          stroke="#9F1239" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="256" cy="101" r="14" fill="#9F1239"/>
+    <circle cx="256" cy="411" r="14" fill="#9F1239"/>
+        
+  </g>
+</svg>

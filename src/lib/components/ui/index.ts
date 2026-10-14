@@ -66,6 +66,9 @@ export { default as AnimatedBackground } from './AnimatedBackground.svelte';
 export { default as AmbientOverlay } from './AmbientOverlay.svelte';
 export { default as AnimatedAvatar } from './AnimatedAvatar.svelte';
 export { default as MobileBottomNav } from './MobileBottomNav.svelte';
+export { default as OsIcon } from './OsIcon.svelte';
+export { default as GridFlowBackground } from './GridFlowBackground.svelte';
+export { default as TotpBadge } from './TotpBadge.svelte';
 
 // CATerm gap-list components (v1.2.0)
 export { default as NotificationCenter } from './NotificationCenter.svelte';
@@ -83,3 +86,7 @@ export { default as HeaderQuickControls } from './HeaderQuickControls.svelte';
 export { default as FloatingAiAssistant } from './FloatingAiAssistant.svelte';
 export { default as PageContainer } from './PageContainer.svelte';
 export { default as SponsorWall } from './SponsorWall.svelte';
+
+// Navigation / menu types
+export type { MobileNavItem } from './MobileBottomNav.svelte';
+export type { MenuGroup } from './AllMenusSheet.svelte';

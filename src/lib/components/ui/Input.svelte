@@ -26,6 +26,9 @@
     trailingAction?: Snippet;
     oninput?: (e: Event) => void;
     onkeydown?: (e: KeyboardEvent) => void;
+    autofocus?: boolean;
+    ariaLabel?: string;
+    ref?: HTMLInputElement;
   }
 
   let {
@@ -46,6 +49,9 @@
     trailingAction,
     oninput,
     onkeydown,
+    autofocus = false,
+    ariaLabel,
+    ref = $bindable(undefined),
   }: Props = $props();
 
   const errorId = uid('input-error');
@@ -79,15 +85,18 @@
     {/if}
 
     <input
+      bind:this={ref}
       {id}
       {type}
       {placeholder}
       {disabled}
       {readonly}
       {required}
+      {autofocus}
       bind:value
       {oninput}
       {onkeydown}
+      aria-label={ariaLabel || label || undefined}
       aria-invalid={!!error || undefined}
       aria-describedby={error ? errorId : undefined}
       class="w-full rounded-lg {variantClasses[variant]} {sizeClasses[size]} {leadingIcon ? 'pl-9' : 'pl-3'} {trailingAction ? 'pr-9' : 'pr-3'} transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ca-brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ca-surface)] {error ? 'border-rose-500 focus:border-rose-500 focus-visible:ring-rose-500' : ''} {success ? 'border-emerald-500' : ''}"

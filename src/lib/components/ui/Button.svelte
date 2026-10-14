@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
+  import type { HTMLButtonAttributes } from 'svelte/elements';
   import type { ComponentVariant, ComponentSize } from './types';
 
   export type ButtonVariant = Extract<
@@ -8,7 +9,7 @@
   >;
   export type ButtonSize = Extract<ComponentSize, 'sm' | 'md' | 'lg' | 'icon'>;
 
-  interface Props {
+  interface Props extends HTMLButtonAttributes {
     variant?: ButtonVariant;
     size?: ButtonSize;
     disabled?: boolean;
@@ -33,6 +34,7 @@
     class: customClass = '',
     onclick,
     children,
+    ...restProps
   }: Props = $props();
 
   const variantClasses: Record<ButtonVariant, string> = {
@@ -71,8 +73,9 @@
   {title}
   disabled={disabled || loading}
   aria-busy={loading || undefined}
-  aria-label={size === 'icon' ? ariaLabel : undefined}
+  aria-label={size === 'icon' ? (ariaLabel || (restProps as any)['aria-label']) : undefined}
   {onclick}
+  {...restProps}
   class="inline-flex items-center justify-center font-sans select-none transition-all duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ca-brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ca-surface)] {variantClasses[variant]} {sizeClasses[size]} {customClass}"
 >
   {#if loading}
