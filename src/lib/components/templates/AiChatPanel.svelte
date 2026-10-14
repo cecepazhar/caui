@@ -1,8 +1,8 @@
 <script lang="ts">
-  import Button from '$lib/components/ui/Button.svelte';
-  import Badge from '$lib/components/ui/Badge.svelte';
+  import Button from '../ui/Button.svelte';
+  import Badge from '../ui/Badge.svelte';
   // eslint-disable-next-line no-unused-vars
-  import Icon from '$lib/components/ui/Icon.svelte';
+  import Icon from '../ui/Icon.svelte';
 
   export interface ChatMessage {
     id: string;

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import Button from '$lib/components/ui/Button.svelte';
-  import Input from '$lib/components/ui/Input.svelte';
-  import Alert from '$lib/components/ui/Alert.svelte';
-  import Icon from '$lib/components/ui/Icon.svelte';
+  import Button from '../ui/Button.svelte';
+  import Input from '../ui/Input.svelte';
+  import Alert from '../ui/Alert.svelte';
+  import Icon from '../ui/Icon.svelte';
 
   interface Props {
     title?: string;

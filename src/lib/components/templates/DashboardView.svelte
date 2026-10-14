@@ -1,10 +1,10 @@
 <script lang="ts">
   // eslint-disable-next-line no-unused-vars
-  import Card from '$lib/components/ui/Card.svelte';
-  import Button from '$lib/components/ui/Button.svelte';
-  import Badge from '$lib/components/ui/Badge.svelte';
-  import Table, { type Column } from '$lib/components/ui/Table.svelte';
-  import Icon from '$lib/components/ui/Icon.svelte';
+  import Card from '../ui/Card.svelte';
+  import Button from '../ui/Button.svelte';
+  import Badge from '../ui/Badge.svelte';
+  import Table, { type Column } from '../ui/Table.svelte';
+  import Icon from '../ui/Icon.svelte';
 
   interface Metric {
     label: string;
