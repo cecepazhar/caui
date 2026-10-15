@@ -67,6 +67,8 @@ export { default as AmbientOverlay } from './AmbientOverlay.svelte';
 export { default as AnimatedAvatar } from './AnimatedAvatar.svelte';
 export { default as MobileBottomNav } from './MobileBottomNav.svelte';
 export { default as OsIcon } from './OsIcon.svelte';
+export { default as SearchInput } from './SearchInput.svelte';
+export { default as EntityCard } from './EntityCard.svelte';
 export { default as GridFlowBackground } from './GridFlowBackground.svelte';
 export { default as TotpBadge } from './TotpBadge.svelte';
 
