@@ -14,7 +14,9 @@
     indigo: 'bg-indigo-500/10 dark:bg-indigo-500/20 border-indigo-500/30 text-indigo-600 dark:text-indigo-400',
     teal: 'bg-teal-500/10 dark:bg-teal-500/20 border-teal-500/30 text-teal-600 dark:text-teal-400',
     orange: 'bg-orange-500/10 dark:bg-orange-500/20 border-orange-500/30 text-orange-600 dark:text-orange-400',
-    pink: 'bg-pink-500/10 dark:bg-pink-500/20 border-pink-500/30 text-pink-600 dark:text-pink-400'
+    pink: 'bg-pink-500/10 dark:bg-pink-500/20 border-pink-500/30 text-pink-600 dark:text-pink-400',
+    neutral: 'bg-neutral-100 dark:bg-neutral-800/80 border-neutral-200 dark:border-neutral-700/80 text-neutral-800 dark:text-neutral-200',
+    monochrome: 'bg-neutral-100 dark:bg-neutral-800/80 border-neutral-200 dark:border-neutral-700/80 text-neutral-800 dark:text-neutral-200'
   } as const;
   export type PageHeaderAccent = keyof typeof ACCENTS;
 </script>

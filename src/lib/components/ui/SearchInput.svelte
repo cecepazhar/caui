@@ -42,9 +42,9 @@
   let iconId = $derived(uid('search-icon'));
 
   const sizeClasses: Record<SearchInputSize, string> = {
-    sm: 'py-1.5 text-xs',
-    md: 'py-2 text-xs',
-    lg: 'py-2.5 text-sm',
+    sm: 'h-8 py-1 text-xs',
+    md: 'h-9 py-1.5 text-xs',
+    lg: 'h-10 py-2 text-sm',
   };
 
   function handleKeydown(e: KeyboardEvent) {
@@ -63,7 +63,7 @@
 
   <div class="relative flex items-center w-full">
     <!-- Leading Search Icon -->
-    <div class="absolute left-3.5 flex items-center justify-center pointer-events-none text-[var(--ca-text-muted)]" {id:iconId}>
+    <div class="absolute left-3.5 flex items-center justify-center pointer-events-none text-[var(--ca-text-muted)]" id={iconId}>
       {#if searchIcon}
         {@render searchIcon()}
       {:else}
