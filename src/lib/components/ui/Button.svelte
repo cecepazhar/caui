@@ -39,9 +39,9 @@
 
   const variantClasses: Record<ButtonVariant, string> = {
     primary:
-      'bg-[var(--ca-brand)] text-white font-semibold hover:opacity-90 border border-[var(--ca-brand)] shadow-sm',
+      'bg-neutral-900 text-white font-semibold hover:bg-neutral-800 dark:bg-white dark:text-neutral-950 dark:hover:bg-neutral-200 border border-neutral-900 dark:border-white shadow-sm',
     secondary:
-      'bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] text-[var(--ca-text-primary)] hover:opacity-80',
+      'bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] text-[var(--ca-text-primary)] hover:bg-[var(--ca-surface-elevated)]',
     outline:
       'bg-transparent border border-[var(--ca-border)] text-[var(--ca-text-primary)] hover:bg-[var(--ca-surface-subtle)]',
     ghost:

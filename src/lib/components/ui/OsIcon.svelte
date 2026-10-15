@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { BaseComponentProps, ComponentSize } from './types';
+  import type { BaseComponentProps } from './types';
 
   export interface OsIconProps extends BaseComponentProps {
     /** Explicit OS hint string, e.g. "Ubuntu 22.04", "fedora", "windows". @default '' */
@@ -14,28 +14,9 @@
     size?: number;
   }
 
-  /** Map semantic size tokens to px values. */
-  const SIZE_MAP: Record<ComponentSize, number> = {
-    xs: 12, sm: 16, md: 24, lg: 32, xl: 48, icon: 20,
-  };
-
-  let {
-    os = '',
-    name = '',
-    tags = [],
-    address = '',
-    size = 16,
-    class: customClass = '',
-  }: OsIconProps & { class?: string } = $props();
-
-  /**
-   * Detect a canonical OS key from an explicit hint, or fall back to
-   * scanning name + tags + address for known substrings.
-   */
-  function detectOsKey(explicitOs?: string, hostName?: string, hostTags?: string[], hostAddress?: string): string {
+  export function detectOsKey(explicitOs?: string, hostName?: string, hostTags?: string[], hostAddress?: string): string {
     const raw = (explicitOs || '').trim().toLowerCase();
     if (raw) {
-      // *buntu flavors contain "ubuntu" as a substring, so they must be checked first.
       if (raw.includes('kubuntu')) return 'kubuntu';
       if (raw.includes('xubuntu')) return 'xubuntu';
       if (raw.includes('lubuntu')) return 'lubuntu';
@@ -90,7 +71,6 @@
     }
 
     const corpus = `${hostName || ''} ${(hostTags || []).join(' ')} ${hostAddress || ''}`.toLowerCase();
-    // Same ordering requirement as above: *buntu flavors before the plain "ubuntu" check.
     if (corpus.includes('kubuntu')) return 'kubuntu';
     if (corpus.includes('xubuntu')) return 'xubuntu';
     if (corpus.includes('lubuntu')) return 'lubuntu';
@@ -144,6 +124,15 @@
     return 'linux';
   }
 
+  let {
+    os = '',
+    name = '',
+    tags = [],
+    address = '',
+    size = 16,
+    class: customClass = '',
+  }: OsIconProps & { class?: string } = $props();
+
   let osKey = $derived(detectOsKey(os, name, tags, address));
 </script>
 
@@ -152,371 +141,144 @@
   style="width: {size}px; height: {size}px;"
   title={osKey}
 >
-  {#if osKey === 'ubuntu'}
-    <!-- Ubuntu "circle of friends" -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#E95420" />
-      <circle cx="6.5" cy="12" r="1.7" fill="#ffffff" />
-      <circle cx="14.8" cy="7.2" r="1.7" fill="#ffffff" />
-      <circle cx="14.8" cy="16.8" r="1.7" fill="#ffffff" />
-      <path d="M12 5.2a6.8 6.8 0 0 1 5 2.2l-1.3 1.3a5 5 0 0 0-3.7-1.7 5.1 5.1 0 0 0-4.6 3h-1.9a7 7 0 0 1 6.5-4.8zm0 13.6a7 7 0 0 1-6.5-4.8h1.9a5.1 5.1 0 0 0 4.6 3 5 5 0 0 0 3.7-1.7l1.3 1.3a6.8 6.8 0 0 1-5 2.2zm4.3-8.8a5 5 0 0 0 0 4h1.9a6.9 6.9 0 0 1 0-4h-1.9z" fill="#ffffff" />
-    </svg>
-  {:else if osKey === 'debian'}
-    <!-- Debian swirl -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#A81D33" />
-      <path d="M15.2 6.3c-3.7 0-6.9 2.8-7.3 6.5-.4 3.3 1.6 6.4 4.8 7.5" fill="none" stroke="#ffffff" stroke-width="2.1" stroke-linecap="round" />
-      <circle cx="15.7" cy="6.5" r="1.3" fill="#ffffff" />
-    </svg>
-  {:else if osKey === 'fedora'}
-    <!-- Fedora "f" -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#294172" />
-      <path d="M10 17.5V9.8a3.3 3.3 0 0 1 3.3-3.3h1.2" fill="none" stroke="#ffffff" stroke-width="2.1" stroke-linecap="round" />
-      <path d="M9.7 13h4.3" stroke="#ffffff" stroke-width="2.1" stroke-linecap="round" />
-    </svg>
-  {:else if osKey === 'redhat'}
-    <!-- Red Hat fedora-hat emblem -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#EE0000" />
-      <path d="M7 15.3c0-3.4 2.2-6.1 5-6.1s5 2.7 5 6.1H7z" fill="#ffffff" />
-      <ellipse cx="12" cy="15.4" rx="7.3" ry="1.7" fill="#ffffff" />
-      <path d="M9.3 9.4c.6-1.2 1.7-2 2.9-2.1" stroke="#EE0000" stroke-width="1" fill="none" stroke-linecap="round" />
-    </svg>
-  {:else if osKey === 'centos'}
-    <!-- CentOS 4-quadrant symbol -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <path d="M12 2.2l4.6 4.6H7.4L12 2.2z" fill="#93227F" />
-      <path d="M21.8 12l-4.6 4.6V7.4L21.8 12z" fill="#EFA724" />
-      <path d="M12 21.8l-4.6-4.6h9.2L12 21.8z" fill="#8EB737" />
-      <path d="M2.2 12l4.6-4.6v9.2L2.2 12z" fill="#262577" />
-      <rect x="9.3" y="9.3" width="5.4" height="5.4" fill="#ffffff" />
-    </svg>
-  {:else if osKey === 'rocky'}
-    <!-- Rocky Linux mountain peak -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#10B981" />
-      <path d="M7 16.5l3.6-6.3a1.6 1.6 0 0 1 2.8 0l3.6 6.3H7z" fill="#ffffff" />
-      <circle cx="12" cy="8.2" r="1.2" fill="#ffffff" />
-    </svg>
-  {:else if osKey === 'almalinux'}
-    <!-- AlmaLinux "A" -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#15283d" />
-      <path d="M12 6.3l5 11.4h-2.3l-1-2.3h-3.4l-1 2.3H7l5-11.4zm0 3.7l-1.3 3h2.6L12 10z" fill="#ffffff" />
-    </svg>
-  {:else if osKey === 'arch'}
-    <!-- Arch Linux -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#1793D1" />
-      <path d="M12 5.8l3.4 7.7-2.1-1-1.3 3.1-1.3-3.1-2.1 1L12 5.8z" fill="#ffffff" />
-      <path d="M7.3 18.2c1.5-1 3-1.5 4.7-1.5s3.2.5 4.7 1.5" fill="none" stroke="#ffffff" stroke-width="1.3" stroke-linecap="round" />
-    </svg>
-  {:else if osKey === 'manjaro'}
-    <!-- Manjaro 3 bars -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#151915" />
-      <rect x="6" y="6" width="3.1" height="12" rx="0.5" fill="#35BF5C" />
-      <rect x="10.5" y="6" width="3.1" height="12" rx="0.5" fill="#35BF5C" />
-      <rect x="15" y="10.2" width="3.1" height="7.8" rx="0.5" fill="#35BF5C" />
-    </svg>
-  {:else if osKey === 'alpine'}
-    <!-- Alpine Linux mountain range -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#0D597F" />
-      <path d="M4.5 17l4.3-7.8 2 3.6 1.2-2.2 1.2 2.2 2-3.6L19.5 17H4.5z" fill="#ffffff" />
-    </svg>
-  {:else if osKey === 'opensuse'}
-    <!-- openSUSE Geeko -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#73BA25" />
-      <path d="M8 16c-1.7-1-2.3-3-1.4-4.7A3.6 3.6 0 0 1 11 9.5" fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" />
-      <circle cx="14.4" cy="9" r="3.1" fill="#ffffff" />
-      <circle cx="15.5" cy="8.1" r="0.8" fill="#3f7a12" />
-    </svg>
-  {:else if osKey === 'mint'}
-    <!-- Linux Mint -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#68B723" />
-      <path d="M7 16V9h2.1l2.3 3.3L13.7 9h2.1v7h-1.9v-4.2l-2.2 3.2-2.2-3.2V16H7z" fill="#ffffff" />
-    </svg>
-  {:else if osKey === 'kali'}
-    <!-- Kali Linux "K" -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#0a0a0a" />
-      <path d="M8.5 7v10M8.5 12l5-5M8.5 12l5 5" fill="none" stroke="#557C94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-    </svg>
-  {:else if osKey === 'popos'}
-    <!-- Pop!_OS exclamation emblem -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#48B9C7" />
-      <rect x="10.5" y="6" width="3" height="7" rx="1.5" fill="#ffffff" />
-      <circle cx="12" cy="16.5" r="1.5" fill="#ffffff" />
-    </svg>
-  {:else if osKey === 'gentoo'}
-    <!-- Gentoo "g" swirl -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#54487A" />
-      <path d="M13.2 8a4 4 0 1 0-3.6 5.7" fill="none" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" />
-      <path d="M9.6 13.7c0 1.8 1.4 3.2 3.2 3.2" fill="none" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" />
-    </svg>
-  {:else if osKey === 'nixos'}
-    <!-- NixOS snowflake -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#1E2A45" />
-      <g stroke="#5277C3" stroke-width="2.1" stroke-linecap="round">
-        <line x1="12" y1="5.3" x2="12" y2="18.7" />
-        <line x1="6.2" y1="8.7" x2="17.8" y2="15.3" />
-        <line x1="17.8" y1="8.7" x2="6.2" y2="15.3" />
-      </g>
-      <circle cx="12" cy="12" r="1.5" fill="#8fc0f0" />
-    </svg>
-  {:else if osKey === 'raspberry'}
-    <!-- Raspberry Pi -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#1b1b1b" />
-      <circle cx="9" cy="10" r="1.4" fill="#C51A4A" />
-      <circle cx="12" cy="9" r="1.4" fill="#C51A4A" />
-      <circle cx="15" cy="10" r="1.4" fill="#C51A4A" />
-      <circle cx="8.5" cy="13" r="1.4" fill="#C51A4A" />
-      <circle cx="11.5" cy="12.6" r="1.4" fill="#C51A4A" />
-      <circle cx="14.5" cy="13" r="1.4" fill="#C51A4A" />
-      <circle cx="11" cy="15.6" r="1.4" fill="#C51A4A" />
-      <circle cx="14" cy="16" r="1.4" fill="#C51A4A" />
-      <path d="M9.5 7.8c1-1.3 2.8-1.7 4.2-.9" fill="none" stroke="#75A928" stroke-width="1.5" stroke-linecap="round" />
-    </svg>
-  {:else if osKey === 'amazon'}
-    <!-- Amazon Linux (AWS smile) -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#232F3E" />
-      <path d="M6.5 14.5c3.6 2.3 7.4 2.3 11 0" fill="none" stroke="#FF9900" stroke-width="2" stroke-linecap="round" />
-      <path d="M15.6 13.2l1.9 1-.4 2.1" fill="none" stroke="#FF9900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-    </svg>
-  {:else if osKey === 'oracle'}
-    <!-- Oracle Linux -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#F80000" />
-      <circle cx="12" cy="12" r="5" fill="none" stroke="#ffffff" stroke-width="2.4" />
-    </svg>
-  {:else if osKey === 'void'}
-    <!-- Void Linux -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#16211c" />
-      <circle cx="12" cy="12" r="7" fill="none" stroke="#478061" stroke-width="2.2" />
-      <circle cx="12" cy="12" r="2.6" fill="#478061" />
-    </svg>
-  {:else if osKey === 'endeavour'}
-    <!-- EndeavourOS rocket -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#7F3FBF" />
-      <path d="M12 5.5c2 2.6 3 5.4 3 8.5H9c0-3.1 1-5.9 3-8.5z" fill="#ffffff" />
-      <path d="M9 14.5l-2 3M15 14.5l2 3M10.5 17h3" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" />
-      <circle cx="12" cy="10.2" r="1.1" fill="#7F3FBF" />
-    </svg>
-  {:else if osKey === 'elementary'}
-    <!-- elementary OS "e" -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#4A90D9" />
-      <path d="M8 12.4a4.1 4.1 0 1 0 1.4-3.1" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
-      <path d="M7.9 12.2h6.4" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
-    </svg>
-  {:else if osKey === 'zorin'}
-    <!-- Zorin OS "Z" -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#0CC1E8" />
-      <path d="M8.3 8h7.4l-6 8H16" fill="none" stroke="#ffffff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
-    </svg>
-  {:else if osKey === 'slackware'}
-    <!-- Slackware "S" -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#1a3f6b" />
-      <path d="M15.3 8.4a5 5 0 0 0-3-.9c-1.8 0-3.1.9-3.1 2.1 0 1.1 1 1.6 2.7 2l1 .2c2 .5 3.1 1.4 3.1 2.9 0 1.9-1.7 3.2-4.2 3.2-1.5 0-2.9-.4-4-1.2" fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" />
-    </svg>
-  {:else if osKey === 'mageia'}
-    <!-- Mageia star -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#1D3E6E" />
-      <path d="M12 4.2l1.8 5.5 5.6-1.6-3.9 4.3 3.9 4.3-5.6-1.6-1.8 5.5-1.8-5.5-5.6 1.6 3.9-4.3-3.9-4.3 5.6 1.6z" fill="#59A5D8" />
-    </svg>
-  {:else if osKey === 'solus'}
-    <!-- Solus spiral -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#4a4de7" />
-      <path d="M9.2 8.2a5 5 0 1 0 5 5" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
-      <circle cx="14" cy="8" r="1.3" fill="#ffffff" />
-    </svg>
-  {:else if osKey === 'tails'}
-    <!-- Tails -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#3B1F47" />
-      <path d="M7 16c1-4 3-7 8-8" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" />
-      <circle cx="16" cy="7.3" r="1.1" fill="#ffffff" />
-    </svg>
-  {:else if osKey === 'deepin'}
-    <!-- Deepin droplet -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#007AFF" />
-      <path d="M12 5.5c2.8 3 4.5 5.4 4.5 7.8a4.5 4.5 0 1 1-9 0c0-2.4 1.7-4.8 4.5-7.8z" fill="#ffffff" />
-    </svg>
-  {:else if osKey === 'clear'}
-    <!-- Clear Linux "C" -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#0071C5" />
-      <path d="M15.2 8a5 5 0 1 0 0 8" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
-    </svg>
-  {:else if osKey === 'garuda'}
-    <!-- Garuda Linux wing -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#F75229" />
-      <path d="M5 14c3-3.5 6-5.5 9-6.5-1 3-2.5 6-5 8.5 2-.3 4.5-1.5 6.5-3.5-2 4-6 6-10.5 4.5z" fill="#ffffff" />
-    </svg>
-  {:else if osKey === 'steam'}
-    <!-- SteamOS -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#171A21" />
-      <circle cx="9.3" cy="14.7" r="2.5" fill="none" stroke="#66c0f4" stroke-width="1.5" />
-      <circle cx="14.8" cy="9" r="3.3" fill="none" stroke="#66c0f4" stroke-width="1.5" />
-      <circle cx="14.8" cy="9" r="1" fill="#66c0f4" />
-      <path d="M11.1 12.9l2.2-2.2" stroke="#66c0f4" stroke-width="1.5" stroke-linecap="round" />
-    </svg>
-  {:else if osKey === 'flatcar' || osKey === 'coreos'}
-    <!-- Flatcar / CoreOS -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#0c0c0c" />
-      <path d="M12 5.2l5.8 3.4v6.8L12 18.8l-5.8-3.4V8.6L12 5.2z" fill="none" stroke="#E6522C" stroke-width="1.7" stroke-linejoin="round" />
-      <circle cx="12" cy="12" r="2.1" fill="#E6522C" />
-    </svg>
-  {:else if osKey === 'devuan'}
-    <!-- Devuan "D" -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#39424a" />
-      <path d="M9 6.8v10.4h2.8a5.2 5.2 0 0 0 0-10.4H9z" fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linejoin="round" />
-    </svg>
-  {:else if osKey === 'parrot'}
-    <!-- Parrot OS -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#00D0FF" />
-      <path d="M8 15c0-4 2.5-7 6-7 2 0 3.5 1.2 3.5 2.8 0 1.7-1.6 2.5-3.3 2.1L18 15l-4.2-.4c.4 1.2-.2 2.4-1.5 2.7-1.6.4-3.3-.3-4.3-2.3z" fill="#0b1728" />
-    </svg>
-  {:else if osKey === 'mx'}
-    <!-- MX Linux -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#1c1c1c" />
-      <text x="12" y="15.6" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="700" font-size="8.5" fill="#ffffff">MX</text>
-    </svg>
-  {:else if osKey === 'kubuntu'}
-    <!-- Kubuntu (KDE blue) -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#0079C1" />
-      <circle cx="12" cy="12" r="6.3" fill="none" stroke="#ffffff" stroke-width="1.5" />
-      <text x="12" y="15.4" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="700" font-size="7.5" fill="#ffffff">K</text>
-    </svg>
-  {:else if osKey === 'xubuntu'}
-    <!-- Xubuntu (Xfce teal) -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#1B6D85" />
-      <circle cx="12" cy="12" r="6.3" fill="none" stroke="#ffffff" stroke-width="1.5" />
-      <text x="12" y="15.4" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="700" font-size="7.5" fill="#ffffff">X</text>
-    </svg>
-  {:else if osKey === 'lubuntu'}
-    <!-- Lubuntu (LXQt indigo) -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#0068C8" />
-      <circle cx="12" cy="12" r="6.3" fill="none" stroke="#ffffff" stroke-width="1.5" />
-      <text x="12" y="15.4" text-anchor="middle" font-family="system-ui, sans-serif" font-weight="700" font-size="7.5" fill="#ffffff">L</text>
-    </svg>
-  {:else if osKey === 'freebsd'}
-    <!-- FreeBSD "Beastie" head -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#AB2B28" />
-      <path d="M8.5 8.2L7 6M15.5 8.2L17 6" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" />
-      <circle cx="12" cy="12.5" r="5" fill="#ffffff" />
-      <circle cx="10.1" cy="11.5" r="0.9" fill="#AB2B28" />
-      <circle cx="13.9" cy="11.5" r="0.9" fill="#AB2B28" />
-      <path d="M9.7 14.7c1.6 1.2 3.4 1.2 5 0" stroke="#AB2B28" stroke-width="1" fill="none" stroke-linecap="round" />
-    </svg>
-  {:else if osKey === 'openbsd'}
-    <!-- OpenBSD "Puffy" -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#F2BE22" />
-      <path d="M6 9l-1.6-1M18 9l1.6-1M6.4 14.5l-1.9.6M17.6 14.5l1.9.6" stroke="#1f2937" stroke-width="1" stroke-linecap="round" />
-      <circle cx="8.7" cy="11" r="1.3" fill="#1f2937" />
-      <circle cx="15.3" cy="11" r="1.3" fill="#1f2937" />
-      <path d="M8.5 15c1.7 1.4 5.3 1.4 7 0" fill="none" stroke="#1f2937" stroke-width="1.6" stroke-linecap="round" />
-    </svg>
-  {:else if osKey === 'netbsd'}
-    <!-- NetBSD flag -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#1b1b1b" />
-      <path d="M8.5 6v12M8.5 6h6.5L12.5 9l2.5 3H8.5" fill="none" stroke="#FF6600" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" />
-    </svg>
-  {:else if osKey === 'mikrotik'}
-    <!-- MikroTik / RouterOS -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#2A5298" />
-      <rect x="5.5" y="9" width="13" height="6" rx="1.5" fill="#ffffff" />
-      <circle cx="8.3" cy="12" r="1.1" fill="#2A5298" />
-      <circle cx="12" cy="12" r="1.1" fill="#2A5298" />
-      <circle cx="15.7" cy="12" r="1.1" fill="#2A5298" />
-    </svg>
-  {:else if osKey === 'cisco'}
-    <!-- Cisco bridge bars -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#049FD9" />
-      <path d="M6 14v3M8.7 11v6M11.4 8v9M14 11v6M16.7 8v9M19.4 11v6" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-    </svg>
-  {:else if osKey === 'windows'}
-    <!-- Windows -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#0078D4" />
-      <rect x="6" y="6" width="5" height="5" fill="#ffffff" />
-      <rect x="13" y="6" width="5" height="5" fill="#ffffff" />
-      <rect x="6" y="13" width="5" height="5" fill="#ffffff" />
-      <rect x="13" y="13" width="5" height="5" fill="#ffffff" />
-    </svg>
-  {:else if osKey === 'macos'}
-    <!-- Apple (macOS) -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#1d1d1f" />
-      <path d="M14.7 8.1c-.6-.7-1.4-1.1-2.3-1.1-.2-1 .3-2 1-2.6.2.9-.2 1.8-.9 2.4.9-.1 1.7.3 2.2 1.3z" fill="#ffffff" />
-      <path d="M15.9 9.6c-1.1-.7-2.4-.6-3.4.2-.9-.6-2-.7-3-.3-1.6.6-2.5 2.3-2.3 4 .2 1.8 1 3.6 2 5 .6.8 1.3 1.6 2.2 1.6.7 0 1-.4 1.8-.4s1.1.4 1.8.4c1 0 1.6-.8 2.2-1.6.5-.7.8-1.4 1.1-2.2-1.6-.6-2.4-2.9-1-4.1.4-.4.8-.6 1.2-.7-.3-.8-.8-1.4-1.6-1.9z" fill="#ffffff" />
-    </svg>
-  {:else if osKey === 'ios'}
-    <!-- Apple (iOS) -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#0A84FF" />
-      <path d="M14.7 8.1c-.6-.7-1.4-1.1-2.3-1.1-.2-1 .3-2 1-2.6.2.9-.2 1.8-.9 2.4.9-.1 1.7.3 2.2 1.3z" fill="#ffffff" />
-      <path d="M15.9 9.6c-1.1-.7-2.4-.6-3.4.2-.9-.6-2-.7-3-.3-1.6.6-2.5 2.3-2.3 4 .2 1.8 1 3.6 2 5 .6.8 1.3 1.6 2.2 1.6.7 0 1-.4 1.8-.4s1.1.4 1.8.4c1 0 1.6-.8 2.2-1.6.5-.7.8-1.4 1.1-2.2-1.6-.6-2.4-2.9-1-4.1.4-.4.8-.6 1.2-.7-.3-.8-.8-1.4-1.6-1.9z" fill="#ffffff" />
-    </svg>
-  {:else if osKey === 'android'}
-    <!-- Android bugdroid -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#0a0a0a" />
-      <path d="M8.3 6.6L7.2 5.2M15.7 6.6l1.1-1.4" stroke="#3DDC84" stroke-width="1.1" stroke-linecap="round" />
-      <path d="M8 10.2a4 4 0 0 1 8 0z" fill="#3DDC84" />
-      <circle cx="10" cy="8.7" r="0.5" fill="#0a0a0a" />
-      <circle cx="14" cy="8.7" r="0.5" fill="#0a0a0a" />
-      <path d="M8.3 10.6v4a.85.85 0 0 0 1.7 0v-4M14 10.6v4a.85.85 0 0 0 1.7 0v-4" stroke="#3DDC84" stroke-width="1.5" fill="none" stroke-linecap="round" />
-    </svg>
-  {:else if osKey === 'server'}
-    <!-- Generic server rack -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#0f172a" />
-      <rect x="5.7" y="6" width="12.6" height="4.5" rx="1" fill="none" stroke="#38bdf8" stroke-width="1.5" />
-      <rect x="5.7" y="13.5" width="12.6" height="4.5" rx="1" fill="none" stroke="#38bdf8" stroke-width="1.5" />
-      <circle cx="8.3" cy="8.25" r="0.8" fill="#38bdf8" />
-      <circle cx="8.3" cy="15.75" r="0.8" fill="#38bdf8" />
-    </svg>
-  {:else}
-    <!-- Generic Linux (Tux) fallback -->
-    <svg viewBox="0 0 24 24" width={size} height={size}>
-      <circle cx="12" cy="12" r="10" fill="#EDEDED" />
-      <path d="M12 4.5c-2.1 0-3.6 1.9-3.4 4.1.1.9.4 1.7.9 2.4-1.7 1.5-2.9 4.1-2.9 6.6 0 1 .8 1.4 1.8 1.1.4-.1.7-.4.8-.8h5.6c.1.4.4.7.8.8 1 .3 1.8-.1 1.8-1.1 0-2.5-1.2-5.1-2.9-6.6.5-.7.8-1.5.9-2.4.2-2.2-1.3-4.1-3.4-4.1z" fill="#0b0b0b" />
-      <ellipse cx="12" cy="15.5" rx="2.4" ry="3.8" fill="#ffffff" />
-      <ellipse cx="10.7" cy="9.2" rx="0.9" ry="1.1" fill="#ffffff" />
-      <ellipse cx="13.3" cy="9.2" rx="0.9" ry="1.1" fill="#ffffff" />
-      <path d="M11.2 10.8l.8.6.8-.6" fill="none" stroke="#F5A623" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M9.6 19.6l.9-1.5M14.4 19.6l-.9-1.5" stroke="#F5A623" stroke-width="1.6" stroke-linecap="round" />
-    </svg>
-  {/if}
+  <svg
+    viewBox="0 0 24 24"
+    width={size}
+    height={size}
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    {#if osKey === 'ubuntu' || osKey === 'kubuntu' || osKey === 'xubuntu' || osKey === 'lubuntu' || osKey === 'popos' || osKey === 'elementary' || osKey === 'zorin'}
+      <!-- ubuntu / *buntu: circle outline with 3 friend nodes -->
+      <circle cx="12" cy="12" r="5" />
+      <circle cx="12" cy="4" r="1.5" />
+      <circle cx="5" cy="16" r="1.5" />
+      <circle cx="19" cy="16" r="1.5" />
+      <path d="M9.5 7.5a5.5 5.5 0 0 0-2.5 4.5" />
+      <path d="M9 16.5a5.5 5.5 0 0 0 6 0" />
+      <path d="M17 12a5.5 5.5 0 0 0-2.5-4.5" />
+    {:else if osKey === 'debian' || osKey === 'devuan' || osKey === 'parrot' || osKey === 'mx' || osKey === 'tails' || osKey === 'deepin'}
+      <!-- debian: swirl line curve -->
+      <path d="M12 3.5c4.5 0 8 3.5 8 8 0 5-4 9-9 9-4.5 0-7.5-3.5-7.5-7.5 0-3.5 2.5-6 6-6 3 0 5 2 5 4.5 0 2-1.5 3.5-3.5 3.5s-2.5-1-2.5-2" />
+    {:else if osKey === 'fedora'}
+      <!-- fedora: infinity loop & stem -->
+      <path d="M12 12c-2.5 0-4.5-2-4.5-4.5S9.5 3 12 3s4.5 2 4.5 4.5v11c0 1.4-1.1 2.5-2.5 2.5s-2.5-1.1-2.5-2.5V11" />
+      <path d="M7.5 11.5h7" />
+      <path d="M16.5 12c0 2.5-2 4.5-4.5 4.5" />
+    {:else if osKey === 'arch' || osKey === 'endeavour' || osKey === 'garuda' || osKey === 'steam'}
+      <!-- arch: mountain peak silhouette -->
+      <path d="M12 3.5L4 20.5c2.5-1.2 5-1.7 8-1.7s5.5.5 8 1.7L12 3.5z" />
+      <path d="M9.5 15c1-1 2.5-1.5 4-1 1 .3 1.5 1 2.5 1.5" />
+    {:else if osKey === 'manjaro'}
+      <!-- manjaro: 3 vertical column bars -->
+      <rect x="4" y="4" width="4" height="16" rx="1" />
+      <rect x="10" y="10" width="4" height="10" rx="1" />
+      <rect x="16" y="4" width="4" height="16" rx="1" />
+      <path d="M10 4h6" />
+    {:else if osKey === 'alpine'}
+      <!-- alpine: dual mountain peaks -->
+      <path d="M3 19.5L9.5 6.5l4.5 9 2.5-5 4.5 9H3z" />
+      <path d="M7.5 13l4 2.5" />
+      <path d="M15 13.5l3 2" />
+    {:else if osKey === 'centos'}
+      <!-- centos: 4 interlocking quadrant rectangles -->
+      <rect x="4" y="4" width="6.5" height="6.5" rx="1" />
+      <rect x="13.5" y="4" width="6.5" height="6.5" rx="1" />
+      <rect x="4" y="13.5" width="6.5" height="6.5" rx="1" />
+      <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1" />
+      <circle cx="12" cy="12" r="1.5" />
+    {:else if osKey === 'redhat' || osKey === 'oracle'}
+      <!-- redhat: fedora hat outline silhouette -->
+      <path d="M3 16.5c3-1.8 6-2 9-2s6 .2 9 2c-3 1.8-6 2-9 2s-6-.2-9-2z" />
+      <path d="M7 15c.5-4.5 2.5-8.5 5-8.5 1 0 1.5.8 2.5.8s1.5-.8 2.5-.8c2.5 0 4.5 4 5 8.5" />
+    {:else if osKey === 'rocky' || osKey === 'almalinux'}
+      <!-- rocky / almalinux: mountain peak with circle sun -->
+      <path d="M3.5 19.5L12 6.5l8.5 13H3.5z" />
+      <circle cx="12" cy="11.5" r="2" />
+      <path d="M10 19.5l2-3.5 2 3.5" />
+    {:else if osKey === 'opensuse' || osKey === 'suse'}
+      <!-- opensuse / suse: chameleon curve -->
+      <path d="M6 14.5c0-4 3.5-7.5 8-7.5 3.5 0 6 2.5 6 5.5 0 2-1 3.5-2.5 4-2 .8-4-.5-5-2s-2-2.5-4-1c-1.5 1-1.5 3.5.5 5 2.5 1.8 6.5 1.5 9-.5" />
+      <circle cx="15.5" cy="10" r="1.2" />
+    {:else if osKey === 'mint'}
+      <!-- mint: leaf outline with m -->
+      <path d="M19 5c-7 0-14 3-14 10 0 4 3 6 6 6 7 0 10-7 10-14 0-.7-.3-1.4-2-2z" />
+      <path d="M8.5 15v-4c0-1 1-1.8 2-1.8s2 .8 2 1.8v4" />
+      <path d="M12.5 11c0-1 1-1.8 2-1.8s2 .8 2 1.8v4" />
+    {:else if osKey === 'kali'}
+      <!-- kali: dragon wing swoop -->
+      <path d="M4 17.5c2.5-1 5-3.5 6-6.5 1-3 3-5.5 7-6.5-2.5 3-2.5 6-.5 8.5-3 .5-5 2.5-6 5.5 2.5-.5 5-2 6.5-4-1 4-3.5 7-7.5 8-3 .7-4.5-.5-5.5-5z" />
+      <circle cx="16.5" cy="6.5" r="1" />
+    {:else if osKey === 'gentoo'}
+      <!-- gentoo: geometric smooth curve -->
+      <path d="M14 6c3.5 0 6 2.5 6 6s-3 7-7.5 7C8 19 5 16 5 12s3.2-7 7.5-7c2 0 3.8.8 5 2l-3 3" />
+      <path d="M12 12h7.5" />
+    {:else if osKey === 'nixos'}
+      <!-- nixos: 6-fold geometric lambda lines -->
+      <path d="M12 3v7l4-2M12 21v-7l-4 2" />
+      <path d="M4.2 7.5l6 3.5v4.5M19.8 16.5l-6-3.5v-4.5" />
+      <path d="M4.2 16.5l6-3.5-4-2M19.8 7.5l-6 3.5 4 2" />
+    {:else if osKey === 'raspberry'}
+      <!-- raspberry: berry outline with leaf -->
+      <path d="M12 6.5c-1.5-2.5-4-2.5-5-2 0 2 1.5 3.5 3 3.5" />
+      <path d="M12 6.5c1.5-2.5 4-2.5 5-2 0 2-1.5 3.5-3 3.5" />
+      <path d="M12 6.5V9" />
+      <path d="M7 10.5c-2 1.5-2.5 4-1 6.5 1.5 2.5 4 4 6 4s4.5-1.5 6-4c1.5-2.5 1-5-1-6.5" />
+      <circle cx="9.5" cy="13" r="1.2" />
+      <circle cx="14.5" cy="13" r="1.2" />
+      <circle cx="12" cy="16.5" r="1.2" />
+    {:else if osKey === 'amazon'}
+      <!-- amazon: cloud outline with smile curve -->
+      <path d="M6.5 14.5A4.5 4.5 0 0 1 6 6a5.5 5.5 0 0 1 10.5-1 4.5 4.5 0 0 1 4 5 4 4 0 0 1-2.5 4.5" />
+      <path d="M7 16.5c3 2 7 2 10 0" />
+      <path d="M15.5 16l2 1-.5 2" />
+    {:else if osKey === 'windows'}
+      <!-- windows: 4 outline pane rectangles -->
+      <rect x="4" y="4" width="6.5" height="6.5" rx="1" />
+      <rect x="13.5" y="4" width="6.5" height="6.5" rx="1" />
+      <rect x="4" y="13.5" width="6.5" height="6.5" rx="1" />
+      <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1" />
+    {:else if osKey === 'macos'}
+      <!-- macos: apple silhouette outline -->
+      <path d="M14.5 3.5c-.5 1.5-1.8 2.5-3.5 2.5 0-1.7 1.2-3 3.5-2.5z" />
+      <path d="M16.5 9.5c-1-.6-2.2-.5-3.2.2-.8-.6-1.8-.7-2.8-.3-1.6.6-2.5 2.2-2.3 3.8.2 1.8 1 3.5 2 4.8.6.8 1.3 1.5 2.2 1.5.7 0 1-.4 1.7-.4s1 .4 1.7.4c.9 0 1.6-.7 2.2-1.5.5-.7.8-1.4 1-2.1-1.5-.6-2.2-2.7-1-3.9.5-.4 1-.6 1.4-.7-.4-1-.9-1.5-1.9-1.8z" />
+    {:else if osKey === 'android'}
+      <!-- android: robot head outline -->
+      <path d="M8 5l-1.5-2M16 5l1.5-2" />
+      <path d="M6 14v-2a6 6 0 0 1 12 0v2H6z" />
+      <circle cx="9.5" cy="10" r="1" />
+      <circle cx="14.5" cy="10" r="1" />
+      <line x1="6" y1="14" x2="18" y2="14" />
+    {:else if osKey === 'ios'}
+      <!-- ios: phone outline -->
+      <rect x="6.5" y="3" width="11" height="18" rx="2.5" />
+      <line x1="10.5" y1="6" x2="13.5" y2="6" />
+      <line x1="11" y1="18" x2="13" y2="18" />
+    {:else if osKey === 'freebsd' || osKey === 'openbsd' || osKey === 'netbsd'}
+      <!-- freebsd: horns outline -->
+      <path d="M7 6c-1.5 2-2 5 .5 7 1.5 1 3 .5 3.5-1.5" />
+      <path d="M17 6c1.5 2 2 5-.5 7-1.5 1-3 .5-3.5-1.5" />
+      <path d="M8 14.5c2 2 6 2 8 0" />
+      <circle cx="9.5" cy="12" r="1" />
+      <circle cx="14.5" cy="12" r="1" />
+    {:else if osKey === 'mikrotik' || osKey === 'cisco'}
+      <!-- mikrotik / cisco: router with 4 arrows -->
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7v4m0 0l-1.5-1.5m1.5 1.5l1.5-1.5" />
+      <path d="M12 17v-4m0 0l-1.5 1.5m1.5-1.5l1.5 1.5" />
+      <path d="M7 12h4m0 0l-1.5-1.5m1.5 1.5l-1.5 1.5" />
+      <path d="M17 12h-4m0 0l1.5-1.5m-1.5 1.5l1.5 1.5" />
+    {:else}
+      <!-- server / linux: server blade outline with status dot and rack lines -->
+      <rect x="3.5" y="4.5" width="17" height="7" rx="1.5" />
+      <rect x="3.5" y="12.5" width="17" height="7" rx="1.5" />
+      <circle cx="6.5" cy="8" r="1" />
+      <circle cx="6.5" cy="16" r="1" />
+      <line x1="11" y1="8" x2="17.5" y2="8" />
+      <line x1="11" y1="16" x2="17.5" y2="16" />
+    {/if}
+  </svg>
 </span>

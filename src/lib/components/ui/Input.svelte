@@ -58,11 +58,11 @@
 
   const variantClasses: Record<InputVariant, string> = {
     primary:
-      'bg-[var(--ca-surface)] border border-[var(--ca-border)] text-[var(--ca-text-primary)] placeholder-[var(--ca-text-muted)] focus:border-[var(--ca-brand)]',
+      'bg-[var(--ca-surface)] border border-[var(--ca-border)] text-[var(--ca-text-primary)] placeholder-[var(--ca-text-muted)] focus:border-neutral-900 dark:focus:border-white',
     outline:
-      'bg-transparent border border-[var(--ca-border)] text-[var(--ca-text-primary)] placeholder-[var(--ca-text-muted)] focus:border-[var(--ca-brand)]',
+      'bg-transparent border border-[var(--ca-border)] text-[var(--ca-text-primary)] placeholder-[var(--ca-text-muted)] focus:border-neutral-900 dark:focus:border-white',
     ghost:
-      'bg-transparent border border-transparent text-[var(--ca-text-primary)] placeholder-[var(--ca-text-muted)] hover:border-[var(--ca-border)] focus:border-[var(--ca-brand)]',
+      'bg-transparent border border-transparent text-[var(--ca-text-primary)] placeholder-[var(--ca-text-muted)] hover:border-[var(--ca-border)] focus:border-neutral-900 dark:focus:border-white',
   };
 
   const sizeClasses: Record<InputSize, string> = {
@@ -79,7 +79,7 @@
 
   <div class="relative flex items-center w-full">
     {#if leadingIcon}
-      <div class="absolute left-3 flex items-center pointer-events-none text-[var(--ca-text-muted)]">
+      <div class="absolute left-3.5 flex items-center pointer-events-none text-[var(--ca-text-muted)]">
         {@render leadingIcon()}
       </div>
     {/if}
@@ -99,7 +99,7 @@
       aria-label={ariaLabel || label || undefined}
       aria-invalid={!!error || undefined}
       aria-describedby={error ? errorId : undefined}
-      class="w-full rounded-lg {variantClasses[variant]} {sizeClasses[size]} {leadingIcon ? 'pl-9' : 'pl-3'} {trailingAction ? 'pr-9' : 'pr-3'} transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ca-brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ca-surface)] {error ? 'border-rose-500 focus:border-rose-500 focus-visible:ring-rose-500' : ''} {success ? 'border-emerald-500' : ''}"
+      class="w-full rounded-lg {variantClasses[variant]} {sizeClasses[size]} {leadingIcon ? 'pl-10' : 'pl-3'} {trailingAction ? 'pr-10' : 'pr-3'} transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-900 dark:focus-visible:ring-white {error ? 'border-rose-500 focus:border-rose-500' : ''} {success ? 'border-emerald-500' : ''}"
     />
 
     {#if trailingAction}
