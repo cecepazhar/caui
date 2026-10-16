@@ -28,7 +28,8 @@
   onMount(async () => {
     try {
       if (typeof window !== 'undefined' && ((window as any).__TAURI_INTERNALS__ || (window as any).__TAURI__)) {
-        const { getCurrentWindow } = await import('@tauri-apps/api/window');
+        const pkg = '@tauri-apps/api/window';
+        const { getCurrentWindow } = await import(/* @vite-ignore */ pkg);
         tauriWindow = getCurrentWindow();
         if (tauriWindow) {
           isMaximized = await tauriWindow.isMaximized();
