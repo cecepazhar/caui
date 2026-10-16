@@ -89,6 +89,23 @@ export { default as FloatingAiAssistant } from './FloatingAiAssistant.svelte';
 export { default as PageContainer } from './PageContainer.svelte';
 export { default as SponsorWall } from './SponsorWall.svelte';
 
+// CAFramework / Sovereign UI components
+export { default as EmptyState } from './EmptyState.svelte';
+export { default as LoadingState } from './LoadingState.svelte';
+export { default as ErrorState } from './ErrorState.svelte';
+export { default as TitleBar } from './TitleBar.svelte';
+export { default as WindowControls } from './WindowControls.svelte';
+export { default as PaneHeader } from './PaneHeader.svelte';
+export { default as GlobalSplitControls, type GlobalSplitLayout } from './GlobalSplitControls.svelte';
+export { default as DualSplitViewport, type ViewportGroup } from './DualSplitViewport.svelte';
+export { default as TabGroupStrip, type TabGroupItem } from './TabGroupStrip.svelte';
+export { default as AiNavTabs, type AiNavTabItem } from './AiNavTabs.svelte';
+export { default as UpdateToast } from './UpdateToast.svelte';
+export { default as WorkspaceMenu, type WorkspaceItem } from './WorkspaceMenu.svelte';
+export { default as FeedbackWidget } from './FeedbackWidget.svelte';
+export { default as CrashReportModal, type CrashReportData } from './CrashReportModal.svelte';
+export { default as AmbientSettingsCard, type AmbientPreset } from './AmbientSettingsCard.svelte';
+
 // Navigation / menu types
 export type { MobileNavItem } from './MobileBottomNav.svelte';
 export type { MenuGroup } from './AllMenusSheet.svelte';

@@ -92,8 +92,8 @@ describe('Input', () => {
   it('has focus-visible ring classes', () => {
     render(Input);
     const input = screen.getByRole('textbox');
-    expect(input.className).toContain('focus-visible:ring-2');
-    expect(input.className).toContain('focus-visible:ring-offset-2');
+    expect(input.className).toContain('focus-visible:outline-none');
+    expect(input.className).toContain('focus-visible:ring-1');
   });
 
   // --- Event callbacks ---
