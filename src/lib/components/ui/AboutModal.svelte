@@ -46,6 +46,10 @@
       <p>
         Version <span class="font-mono text-[var(--ca-text-primary)]">{version}</span>
       </p>
+      <div class="pt-2 border-t border-[var(--ca-border)] text-xs text-[var(--ca-text-muted, #71717a)]">
+        Created by <span class="font-semibold text-[var(--ca-text-primary)]">Cecep Saeful Azhar Hidayat, ST</span><br>
+        <a href="https://cecepazhar.com" target="_blank" rel="noreferrer" class="hover:underline text-[var(--ca-brand)]">cecepazhar.com</a> • <a href="mailto:hi@cecepazhar.com" class="hover:underline">hi@cecepazhar.com</a> • 0852 2069 6117
+      </div>
     {/if}
   </div>
 
