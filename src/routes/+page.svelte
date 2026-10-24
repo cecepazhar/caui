@@ -119,6 +119,7 @@
           <button
             type="button"
             onclick={copyInstall}
+            data-cashell-event="download"
             class="ml-2 px-2 py-0.5 rounded bg-neutral-800 hover:bg-neutral-700 text-[10px] text-white font-sans transition cursor-pointer"
           >
             {copied ? 'Copied!' : 'Copy'}
@@ -127,6 +128,7 @@
 
         <a
           href="/docs/components"
+          data-cashell-event="download"
           class="px-5 py-2.5 rounded-xl bg-white text-neutral-950 font-semibold text-xs hover:bg-neutral-200 transition shadow-lg"
         >
           Explore Catalog &rarr;
