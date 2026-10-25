@@ -1,40 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
   <defs>
-    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#22D3EE" />
-      <stop offset="100%" stop-color="#06B6D4" />
-    </linearGradient>
-    <linearGradient id="whiteGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" />
-      <stop offset="100%" stop-color="#E2E8F0" />
-    </linearGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.25" />
-      <stop offset="100%" stop-color="#06B6D4" stop-opacity="0" />
+    <radialGradient id="glow_camark" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#121217" stop-opacity="0" />
     </radialGradient>
-    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="8" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-    </filter>
+    <linearGradient id="border_grad_camark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#272732" stop-opacity="0.8"/>
+    </linearGradient>
   </defs>
 
-  <!-- Background Squircle -->
-  <rect x="24" y="24" width="464" height="464" rx="112" fill="#0A0A0C" stroke="#06B6D4" stroke-width="4" stroke-opacity="0.35"/>
+  <!-- Squircle Container 16px radius relative to 400px is 64px -->
+  <rect x="16" y="16" width="368" height="368" rx="68" fill="#121217" stroke="url(#border_grad_camark)" stroke-width="6"/>
+  <rect x="20" y="20" width="360" height="360" rx="64" fill="url(#glow_camark)"/>
+
   
-  <!-- Subtle Ambient Glow -->
-  <circle cx="256" cy="256" r="200" fill="url(#glow)"/>
+  <!-- Dual Wing Cecep Azhar Crest Geometry (Top Watermark / Wings) -->
+  <g opacity="0.45" transform="translate(140, 50) scale(0.09)">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M581 0L0 301V644L581 945V546L421 473L581 399V0ZM529 86L52 332V613L529 859V574L308 473L529 371V86Z" fill="#06B6D4"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M753 0L1334 301V644L753 945V546L913 473L753 399V0ZM805 86L1282 332V613L805 859V574L1026 473L805 371V86Z" fill="#06B6D4"/>
+  </g>
 
-  <!-- Main Markdown Symbol (Badge + M + Arrow) -->
-  <!-- Outer Badge Container -->
-  <rect x="76" y="128" width="360" height="256" rx="36" fill="#111827" fill-opacity="0.6" stroke="url(#cyanGrad)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <!-- Bold 'M' (Markdown Glyph) -->
-  <path d="M128 320 V192 L188 252 L248 192 V320" 
-        fill="none" stroke="url(#cyanGrad)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
-
-  <!-- Downward Arrow (Download/Format/Markdown standard) -->
-  <path d="M344 192 V316" 
-        fill="none" stroke="url(#whiteGrad)" stroke-width="24" stroke-linecap="round"/>
-  <path d="M296 272 L344 320 L392 272" 
-        fill="none" stroke="url(#whiteGrad)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- App Specific Glyph -->
+  <g>
+    
+          <path d="M120 310 V200 L170 260 L220 200 V310" fill="none" stroke="#06B6D4" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M280 220 V310 M250 280 L280 310 L310 280" fill="none" stroke="#EDEDED" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+        
+  </g>
 </svg>

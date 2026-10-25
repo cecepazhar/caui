@@ -1,34 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
   <defs>
-    <linearGradient id="symbolGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#F472B6" />
-      <stop offset="100%" stop-color="#EC4899" />
-    </linearGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#EC4899" stop-opacity="0.28" />
-      <stop offset="100%" stop-color="#EC4899" stop-opacity="0" />
+    <radialGradient id="glow_cabench" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#EC4899" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#121217" stop-opacity="0" />
     </radialGradient>
+    <linearGradient id="border_grad_cabench" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EC4899" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#272732" stop-opacity="0.8"/>
+    </linearGradient>
   </defs>
 
-  <!-- Background Squircle -->
-  <rect x="24" y="24" width="464" height="464" rx="112" fill="#0A0A0C" stroke="#EC4899" stroke-width="4" stroke-opacity="0.35"/>
+  <!-- Squircle Container 16px radius relative to 400px is 64px -->
+  <rect x="16" y="16" width="368" height="368" rx="68" fill="#121217" stroke="url(#border_grad_cabench)" stroke-width="6"/>
+  <rect x="20" y="20" width="360" height="360" rx="64" fill="url(#glow_cabench)"/>
 
-  <!-- Ambient Glow -->
-  <circle cx="256" cy="256" r="200" fill="url(#glow)"/>
+  
+  <!-- Dual Wing Cecep Azhar Crest Geometry (Top Watermark / Wings) -->
+  <g opacity="0.45" transform="translate(140, 50) scale(0.09)">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M581 0L0 301V644L581 945V546L421 473L581 399V0ZM529 86L52 332V613L529 859V574L308 473L529 371V86Z" fill="#EC4899"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M753 0L1334 301V644L753 945V546L913 473L753 399V0ZM805 86L1282 332V613L805 859V574L1026 473L805 371V86Z" fill="#EC4899"/>
+  </g>
 
-  <!-- Main Symbol Glyph -->
-  <g fill="none">
+
+  <!-- App Specific Glyph -->
+  <g>
     
-    <!-- Benchmark Speedometer Gauge Arc -->
-    <path d="M130 310 A 145 145 0 1 1 382 310" fill="none" stroke="url(#symbolGrad)" stroke-width="20" stroke-linecap="round" stroke-dasharray="14 10"/>
-    
-    <!-- High-Performance Lightning Bolt -->
-    <polygon points="270,140 170,270 245,270 230,372 342,240 268,240" fill="none" stroke="url(#symbolGrad)" stroke-width="24" stroke-linejoin="round" stroke-linecap="round"/>
-    <polygon points="266,165 192,260 250,260 238,340 318,246 264,246" fill="#EC4899" fill-opacity="0.3"/>
-    
-    <!-- Calibration Speed Marks -->
-    <line x1="125" y1="330" x2="165" y2="330" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round"/>
-    <line x1="347" y1="330" x2="387" y2="330" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round"/>
+          <path d="M210 170 L140 270 H200 L190 340 L260 240 H200 Z" fill="none" stroke="#EC4899" stroke-width="24" stroke-linejoin="round" stroke-linecap="round"/>
         
   </g>
 </svg>
