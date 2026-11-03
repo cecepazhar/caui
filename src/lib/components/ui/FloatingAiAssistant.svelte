@@ -80,7 +80,7 @@
         <button
           type="button"
           aria-label="Send message"
-          class="absolute right-1 top-1/2 -translate-y-1/2 p-1.5 rounded-md bg-[var(--ca-brand)] text-white hover:opacity-90 transition-opacity duration-[var(--ca-motion-duration-fast)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ca-brand)]"
+          class="absolute right-1 top-1/2 -translate-y-1/2 p-1.5 rounded-md bg-[var(--ca-brand)] text-[var(--ca-brand-contrast)] hover:opacity-90 transition-opacity duration-[var(--ca-motion-duration-fast)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ca-brand)]"
         >
           <Send class="w-3.5 h-3.5" aria-hidden="true" />
         </button>

@@ -32,16 +32,16 @@
   }: Props = $props();
 </script>
 
-<div data-tauri-drag-region class="h-9 px-2.5 bg-[var(--ca-surface-base,#0a0a0a)] border-b border-[var(--ca-border,#27272a)] flex items-center justify-between select-none shrink-0 {customClass}">
+<div data-tauri-drag-region class="h-9 px-2.5 bg-[var(--ca-surface-base)] border-b border-[var(--ca-border)] flex items-center justify-between select-none shrink-0 {customClass}">
   <div class="flex items-center gap-2 min-w-0 flex-1">
     {#if left}
       {@render left()}
     {:else}
       {#if title}
-        <span class="text-xs font-medium text-[var(--ca-text-secondary,#a1a1aa)] truncate data-[tauri-drag-region]">{title}</span>
+        <span class="text-xs font-medium text-[var(--ca-text-secondary)] truncate data-[tauri-drag-region]">{title}</span>
       {/if}
       {#if version}
-        <span class="px-1.5 py-0.5 rounded bg-[var(--ca-surface-subtle,#18181b)] border border-[var(--ca-border,#27272a)] text-[10px] font-mono text-[var(--ca-text-muted,#71717a)]">
+        <span class="px-1.5 py-0.5 rounded bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] text-[10px] font-mono text-[var(--ca-text-muted)]">
           v{version}
         </span>
       {/if}

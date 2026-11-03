@@ -17,7 +17,7 @@
       : mode === 'light'
         ? 'text-neutral-900'
         : mode === 'brand'
-          ? 'text-[var(--ca-brand,#06B6D4)]'
+          ? 'text-[var(--ca-brand)]'
           : 'text-white'
   );
 </script>

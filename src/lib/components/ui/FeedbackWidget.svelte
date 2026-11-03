@@ -68,17 +68,17 @@
       role="dialog"
       aria-modal="true"
       aria-labelledby="feedback-title"
-      class="relative w-full max-w-md rounded-2xl border border-[var(--ca-border,#27272a)] bg-[var(--ca-surface-base,#141414)] shadow-2xl p-6 text-left space-y-4 text-xs text-[var(--ca-text-primary,#fafafa)] animate-in fade-in zoom-in-95"
+      class="relative w-full max-w-md rounded-2xl border border-[var(--ca-border)] bg-[var(--ca-surface-base)] shadow-2xl p-6 text-left space-y-4 text-xs text-[var(--ca-text-primary)] animate-in fade-in zoom-in-95"
     >
       <div class="flex items-start justify-between">
         <div>
-          <h3 id="feedback-title" class="text-sm font-bold text-[var(--ca-text-primary,#fafafa)]">{title}</h3>
-          <p class="text-[11px] text-[var(--ca-text-muted,#a1a1aa)] mt-0.5">{description}</p>
+          <h3 id="feedback-title" class="text-sm font-bold text-[var(--ca-text-primary)]">{title}</h3>
+          <p class="text-[11px] text-[var(--ca-text-muted)] mt-0.5">{description}</p>
         </div>
         <button
           type="button"
           onclick={handleClose}
-          class="p-1 rounded text-[var(--ca-text-muted,#a1a1aa)] hover:text-[var(--ca-text-primary,#fafafa)] hover:bg-[var(--ca-surface-subtle,#27272a)] cursor-pointer"
+          class="p-1 rounded text-[var(--ca-text-muted)] hover:text-[var(--ca-text-primary)] hover:bg-[var(--ca-surface-subtle)] cursor-pointer"
           aria-label="Close"
         >
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -94,12 +94,12 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h4 class="text-sm font-bold text-[var(--ca-text-primary,#fafafa)]">Thank You!</h4>
-          <p class="text-[11px] text-[var(--ca-text-muted,#a1a1aa)]">Your feedback helps us continuously improve.</p>
+          <h4 class="text-sm font-bold text-[var(--ca-text-primary)]">Thank You!</h4>
+          <p class="text-[11px] text-[var(--ca-text-muted)]">Your feedback helps us continuously improve.</p>
           <button
             type="button"
             onclick={handleClose}
-            class="mt-4 px-4 py-2 bg-[var(--ca-brand,#6366f1)] text-white rounded-lg text-xs font-semibold hover:opacity-90 cursor-pointer"
+            class="mt-4 px-4 py-2 bg-[var(--ca-brand)] text-[var(--ca-brand-contrast)] rounded-lg text-xs font-semibold hover:opacity-90 cursor-pointer"
           >
             Close
           </button>
@@ -118,7 +118,7 @@
                   class="p-1 text-2xl transition-transform hover:scale-110 cursor-pointer focus:outline-none"
                   aria-label={`${star} star`}
                 >
-                  <span class={(hoverRating || rating) >= star ? 'text-amber-400' : 'text-[var(--ca-border,#3f3f46)]'}>★</span>
+                  <span class={(hoverRating || rating) >= star ? 'text-amber-400' : 'text-[var(--ca-border)]'}>★</span>
                 </button>
               {/each}
             </div>
@@ -128,35 +128,35 @@
           </div>
 
           <div>
-            <label for="fb-notes" class="block text-[11px] font-semibold text-[var(--ca-text-secondary,#d4d4d8)] mb-1">Your Feedback</label>
+            <label for="fb-notes" class="block text-[11px] font-semibold text-[var(--ca-text-secondary)] mb-1">Your Feedback</label>
             <textarea
               id="fb-notes"
               rows="3"
               bind:value={content}
               placeholder="What do you love? What can be improved?"
-              class="w-full px-3 py-2 bg-[var(--ca-surface-subtle,#18181b)] border border-[var(--ca-border,#27272a)] rounded-lg text-xs text-[var(--ca-text-primary,#fafafa)] placeholder-[var(--ca-text-muted,#71717a)] focus:outline-none focus:border-[var(--ca-brand,#6366f1)]"
+              class="w-full px-3 py-2 bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] rounded-lg text-xs text-[var(--ca-text-primary)] placeholder-[var(--ca-text-muted)] focus:outline-none focus:border-[var(--ca-brand)]"
             ></textarea>
           </div>
 
           <div class="grid grid-cols-2 gap-2">
             <div>
-              <label for="fb-name" class="block text-[10px] font-medium text-[var(--ca-text-muted,#a1a1aa)] mb-1">Name (optional)</label>
+              <label for="fb-name" class="block text-[10px] font-medium text-[var(--ca-text-muted)] mb-1">Name (optional)</label>
               <input
                 id="fb-name"
                 type="text"
                 bind:value={name}
                 placeholder="Alex"
-                class="w-full px-2.5 py-1.5 bg-[var(--ca-surface-subtle,#18181b)] border border-[var(--ca-border,#27272a)] rounded-lg text-xs text-[var(--ca-text-primary,#fafafa)] focus:outline-none focus:border-[var(--ca-brand,#6366f1)]"
+                class="w-full px-2.5 py-1.5 bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] rounded-lg text-xs text-[var(--ca-text-primary)] focus:outline-none focus:border-[var(--ca-brand)]"
               />
             </div>
             <div>
-              <label for="fb-prof" class="block text-[10px] font-medium text-[var(--ca-text-muted,#a1a1aa)] mb-1">Role / Tech (optional)</label>
+              <label for="fb-prof" class="block text-[10px] font-medium text-[var(--ca-text-muted)] mb-1">Role / Tech (optional)</label>
               <input
                 id="fb-prof"
                 type="text"
                 bind:value={profession}
                 placeholder="DevOps Engineer"
-                class="w-full px-2.5 py-1.5 bg-[var(--ca-surface-subtle,#18181b)] border border-[var(--ca-border,#27272a)] rounded-lg text-xs text-[var(--ca-text-primary,#fafafa)] focus:outline-none focus:border-[var(--ca-brand,#6366f1)]"
+                class="w-full px-2.5 py-1.5 bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] rounded-lg text-xs text-[var(--ca-text-primary)] focus:outline-none focus:border-[var(--ca-brand)]"
               />
             </div>
           </div>
@@ -165,18 +165,18 @@
             <p class="text-rose-400 text-[11px]">{errorMessage}</p>
           {/if}
 
-          <div class="flex items-center justify-end gap-2 pt-2 border-t border-[var(--ca-border,#27272a)]">
+          <div class="flex items-center justify-end gap-2 pt-2 border-t border-[var(--ca-border)]">
             <button
               type="button"
               onclick={handleClose}
-              class="px-3 py-1.5 rounded-lg text-xs text-[var(--ca-text-muted,#a1a1aa)] hover:text-[var(--ca-text-primary,#fafafa)] transition-colors cursor-pointer"
+              class="px-3 py-1.5 rounded-lg text-xs text-[var(--ca-text-muted)] hover:text-[var(--ca-text-primary)] transition-colors cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-[var(--ca-brand,#6366f1)] text-white hover:opacity-90 disabled:opacity-50 transition-all cursor-pointer shadow-xs"
+              class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-[var(--ca-brand)] text-[var(--ca-brand-contrast)] hover:opacity-90 disabled:opacity-50 transition-all cursor-pointer shadow-xs"
             >
               {isSubmitting ? 'Submitting...' : 'Send Feedback'}
             </button>

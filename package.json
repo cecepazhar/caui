@@ -37,13 +37,16 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "package": "svelte-kit sync && svelte-package",
+    "package": "node scripts/build-tokens.mjs --check && svelte-kit sync && svelte-package",
     "publint": "publint",
     "prepublishOnly": "pnpm run package && pnpm run publint",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "tokens": "node scripts/build-tokens.mjs",
+    "tokens:check": "node scripts/build-tokens.mjs --check",
+    "lint:tokens": "node scripts/check-design-tokens.mjs"
   },
   "peerDependencies": {
     "svelte": "^5.0.0"

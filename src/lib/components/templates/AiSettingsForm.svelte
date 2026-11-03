@@ -58,10 +58,10 @@
   }
 </script>
 
-<div class="bg-[var(--ca-surface-base,#141414)] border border-[var(--ca-border,#27272a)] rounded-2xl p-6 text-xs text-[var(--ca-text-primary,#fafafa)] space-y-6 {customClass}">
+<div class="bg-[var(--ca-surface-base)] border border-[var(--ca-border)] rounded-2xl p-6 text-xs text-[var(--ca-text-primary)] space-y-6 {customClass}">
   <div>
-    <h3 class="text-base font-bold text-[var(--ca-text-primary,#fafafa)]">AI Assistant & Model Configuration</h3>
-    <p class="text-xs text-[var(--ca-text-muted,#a1a1aa)] mt-1">
+    <h3 class="text-base font-bold text-[var(--ca-text-primary)]">AI Assistant & Model Configuration</h3>
+    <p class="text-xs text-[var(--ca-text-muted)] mt-1">
       Connect your local or cloud intelligence providers to power copilots, code review, and prompt workflows.
     </p>
   </div>
@@ -69,11 +69,11 @@
   <form onsubmit={handleSubmit} class="space-y-4">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
-        <label for="ai-provider" class="block text-[11px] font-semibold text-[var(--ca-text-muted,#a1a1aa)] mb-1">Provider</label>
+        <label for="ai-provider" class="block text-[11px] font-semibold text-[var(--ca-text-muted)] mb-1">Provider</label>
         <select
           id="ai-provider"
           bind:value={config.provider}
-          class="w-full px-3 py-2 bg-[var(--ca-surface-subtle,#18181b)] border border-[var(--ca-border,#27272a)] rounded-lg text-xs text-[var(--ca-text-primary,#fafafa)] focus:outline-none focus:border-[var(--ca-brand,#6366f1)]"
+          class="w-full px-3 py-2 bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] rounded-lg text-xs text-[var(--ca-text-primary)] focus:outline-none focus:border-[var(--ca-brand)]"
         >
           {#each providers as p}
             <option value={p.id}>{p.name}</option>
@@ -82,37 +82,37 @@
       </div>
 
       <div>
-        <label for="ai-model" class="block text-[11px] font-semibold text-[var(--ca-text-muted,#a1a1aa)] mb-1">Model Name</label>
+        <label for="ai-model" class="block text-[11px] font-semibold text-[var(--ca-text-muted)] mb-1">Model Name</label>
         <input
           id="ai-model"
           type="text"
           bind:value={config.model}
           placeholder="e.g. gpt-4o, claude-3-5-sonnet, llama3.2"
-          class="w-full px-3 py-2 bg-[var(--ca-surface-subtle,#18181b)] border border-[var(--ca-border,#27272a)] rounded-lg text-xs text-[var(--ca-text-primary,#fafafa)] focus:outline-none focus:border-[var(--ca-brand,#6366f1)]"
+          class="w-full px-3 py-2 bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] rounded-lg text-xs text-[var(--ca-text-primary)] focus:outline-none focus:border-[var(--ca-brand)]"
         />
       </div>
     </div>
 
     <div>
-      <label for="ai-api-key" class="block text-[11px] font-semibold text-[var(--ca-text-muted,#a1a1aa)] mb-1">API Secret Key (E2EE Vault Protected)</label>
+      <label for="ai-api-key" class="block text-[11px] font-semibold text-[var(--ca-text-muted)] mb-1">API Secret Key (E2EE Vault Protected)</label>
       <input
         id="ai-api-key"
         type="password"
         bind:value={config.apiKey}
         placeholder="sk-••••••••••••••••••••••••••••••••"
-        class="w-full px-3 py-2 bg-[var(--ca-surface-subtle,#18181b)] border border-[var(--ca-border,#27272a)] rounded-lg text-xs text-[var(--ca-text-primary,#fafafa)] focus:outline-none focus:border-[var(--ca-brand,#6366f1)]"
+        class="w-full px-3 py-2 bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] rounded-lg text-xs text-[var(--ca-text-primary)] focus:outline-none focus:border-[var(--ca-brand)]"
       />
     </div>
 
     {#if config.provider === 'local' || config.provider === 'custom'}
       <div>
-        <label for="ai-endpoint" class="block text-[11px] font-semibold text-[var(--ca-text-muted,#a1a1aa)] mb-1">Base Endpoint URL</label>
+        <label for="ai-endpoint" class="block text-[11px] font-semibold text-[var(--ca-text-muted)] mb-1">Base Endpoint URL</label>
         <input
           id="ai-endpoint"
           type="url"
           bind:value={config.customEndpoint}
           placeholder="http://127.0.0.1:11434/v1 or http://127.0.0.1:20128"
-          class="w-full px-3 py-2 bg-[var(--ca-surface-subtle,#18181b)] border border-[var(--ca-border,#27272a)] rounded-lg text-xs text-[var(--ca-text-primary,#fafafa)] focus:outline-none focus:border-[var(--ca-brand,#6366f1)]"
+          class="w-full px-3 py-2 bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] rounded-lg text-xs text-[var(--ca-text-primary)] focus:outline-none focus:border-[var(--ca-brand)]"
         />
       </div>
     {/if}
@@ -120,8 +120,8 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
       <div>
         <div class="flex items-center justify-between mb-1">
-          <label for="ai-temp" class="text-[11px] font-semibold text-[var(--ca-text-muted,#a1a1aa)]">Temperature</label>
-          <span class="font-mono text-[10px] text-[var(--ca-text-muted,#71717a)]">{config.temperature}</span>
+          <label for="ai-temp" class="text-[11px] font-semibold text-[var(--ca-text-muted)]">Temperature</label>
+          <span class="font-mono text-[10px] text-[var(--ca-text-muted)]">{config.temperature}</span>
         </div>
         <input
           id="ai-temp"
@@ -130,14 +130,14 @@
           max="2"
           step="0.05"
           bind:value={config.temperature}
-          class="w-full accent-[var(--ca-brand,#6366f1)] cursor-pointer"
+          class="w-full accent-[var(--ca-brand)] cursor-pointer"
         />
       </div>
 
       <div>
         <div class="flex items-center justify-between mb-1">
-          <label for="ai-max-tokens" class="text-[11px] font-semibold text-[var(--ca-text-muted,#a1a1aa)]">Max Tokens</label>
-          <span class="font-mono text-[10px] text-[var(--ca-text-muted,#71717a)]">{config.maxTokens}</span>
+          <label for="ai-max-tokens" class="text-[11px] font-semibold text-[var(--ca-text-muted)]">Max Tokens</label>
+          <span class="font-mono text-[10px] text-[var(--ca-text-muted)]">{config.maxTokens}</span>
         </div>
         <input
           id="ai-max-tokens"
@@ -146,7 +146,7 @@
           max="16384"
           step="512"
           bind:value={config.maxTokens}
-          class="w-full accent-[var(--ca-brand,#6366f1)] cursor-pointer"
+          class="w-full accent-[var(--ca-brand)] cursor-pointer"
         />
       </div>
     </div>
@@ -163,7 +163,7 @@
       <button
         type="submit"
         disabled={isSaving}
-        class="px-5 py-2 bg-[var(--ca-brand,#6366f1)] hover:opacity-90 disabled:opacity-50 text-white font-semibold rounded-xl text-xs transition-all cursor-pointer shadow-xs"
+        class="px-5 py-2 bg-[var(--ca-brand)] hover:opacity-90 disabled:opacity-50 text-[var(--ca-brand-contrast)] font-semibold rounded-xl text-xs transition-all cursor-pointer shadow-xs"
       >
         {isSaving ? 'Saving...' : 'Save AI Settings'}
       </button>

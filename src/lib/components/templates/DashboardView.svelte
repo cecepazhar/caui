@@ -51,7 +51,7 @@
   let selectedServer = $state<ServerRow | null>(serverData[0]);
 </script>
 
-<div class="space-y-6 font-sans text-[#EDEDED]">
+<div class="space-y-6 font-sans text-[var(--ca-text-primary)]">
   <!-- Top Quick Actions & Title -->
   <div class="flex flex-wrap items-center justify-between gap-4">
     <div>
@@ -73,7 +73,7 @@
   <!-- Metric Telemetry Cards Grid -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
     {#each metrics as m (m.label)}
-      <div class="p-4 rounded-xl bg-[#121217] border border-[#272732] flex items-center justify-between shadow-xs">
+      <div class="p-4 rounded-xl bg-[var(--ca-surface-elevated)] border border-[var(--ca-border)] flex items-center justify-between shadow-xs">
         <div class="space-y-1">
           <span class="text-[11px] font-medium text-neutral-400 uppercase tracking-wider">{m.label}</span>
           <div class="text-2xl font-bold font-mono text-white">{m.value}</div>
@@ -81,7 +81,7 @@
             <span>{m.change}</span>
           </div>
         </div>
-        <div class="w-10 h-10 rounded-lg bg-[#18181F] border border-[#272732] flex items-center justify-center text-[var(--ca-brand)]">
+        <div class="w-10 h-10 rounded-lg bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] flex items-center justify-center text-[var(--ca-brand)]">
           <Icon name={m.icon} size={18} />
         </div>
       </div>
@@ -149,25 +149,25 @@
       {#if selectedServer}
         <Card title={selectedServer.name} description="Dedicated cloud node telemetry details">
           <div class="space-y-3 text-xs">
-            <div class="flex justify-between py-1 border-b border-[#272732]">
+            <div class="flex justify-between py-1 border-b border-[var(--ca-border)]">
               <span class="text-neutral-400">Status</span>
               <Badge variant={selectedServer.status === 'online' ? 'success' : selectedServer.status === 'warning' ? 'warning' : 'danger'}>
                 {selectedServer.status.toUpperCase()}
               </Badge>
             </div>
-            <div class="flex justify-between py-1 border-b border-[#272732]">
+            <div class="flex justify-between py-1 border-b border-[var(--ca-border)]">
               <span class="text-neutral-400">Public IP</span>
               <span class="font-mono text-white">{selectedServer.ip}</span>
             </div>
-            <div class="flex justify-between py-1 border-b border-[#272732]">
+            <div class="flex justify-between py-1 border-b border-[var(--ca-border)]">
               <span class="text-neutral-400">Region Zone</span>
               <span class="text-white">{selectedServer.region}</span>
             </div>
-            <div class="flex justify-between py-1 border-b border-[#272732]">
+            <div class="flex justify-between py-1 border-b border-[var(--ca-border)]">
               <span class="text-neutral-400">Live CPU Load</span>
               <span class="font-mono text-white">{selectedServer.cpu}</span>
             </div>
-            <div class="flex justify-between py-1 border-b border-[#272732]">
+            <div class="flex justify-between py-1 border-b border-[var(--ca-border)]">
               <span class="text-neutral-400">Memory Usage</span>
               <span class="font-mono text-white">{selectedServer.mem}</span>
             </div>
@@ -183,7 +183,7 @@
           </div>
         </Card>
       {:else}
-        <div class="p-8 rounded-xl border border-dashed border-[#272732] text-center text-xs text-neutral-500">
+        <div class="p-8 rounded-xl border border-dashed border-[var(--ca-border)] text-center text-xs text-neutral-500">
           Select a server row from the table to view real-time diagnostics.
         </div>
       {/if}

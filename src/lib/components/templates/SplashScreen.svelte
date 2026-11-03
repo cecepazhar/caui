@@ -51,7 +51,7 @@
   });
 </script>
 
-<div class="relative w-full h-full min-h-[460px] bg-[#0A0A0C] text-[#EDEDED] flex flex-col justify-between p-8 sm:p-12 overflow-hidden rounded-2xl border border-[#272732] font-sans select-none {customClass}">
+<div class="relative w-full h-full min-h-[460px] bg-[var(--ca-surface)] text-[var(--ca-text-primary)] flex flex-col justify-between p-8 sm:p-12 overflow-hidden rounded-2xl border border-[var(--ca-border)] font-sans select-none {customClass}">
   <!-- Ambient Background Glow -->
   <div class="absolute -top-32 -left-32 w-80 h-80 bg-[var(--ca-brand)]/15 rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute -bottom-32 -right-32 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -71,7 +71,7 @@
   <div class="relative z-10 flex flex-col items-center justify-center my-auto space-y-6 text-center">
     <!-- Stylized Dual Wing Logo -->
     <div class="relative group">
-      <div class="w-20 h-20 rounded-2xl bg-[#121217] border border-[#272732] shadow-2xl flex items-center justify-center relative overflow-hidden">
+      <div class="w-20 h-20 rounded-2xl bg-[var(--ca-surface-elevated)] border border-[var(--ca-border)] shadow-2xl flex items-center justify-center relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-tr from-[var(--ca-brand)]/20 via-transparent to-transparent"></div>
         <svg class="w-10 h-10 text-[var(--ca-brand)]" viewBox="0 0 32 32" fill="none" stroke="currentColor">
           <path d="M6 10L16 4L26 10L26 22L16 28L6 22Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -91,7 +91,7 @@
     </div>
 
     <!-- Quote Block -->
-    <div class="max-w-md p-4 rounded-xl bg-[#121217]/80 border border-[#272732] text-xs text-neutral-300">
+    <div class="max-w-md p-4 rounded-xl bg-[var(--ca-surface-elevated)]/80 border border-[var(--ca-border)] text-xs text-neutral-300">
       <p class="italic font-light leading-relaxed">"{currentQuote.text}"</p>
       <p class="mt-2 text-[11px] font-mono font-medium text-[var(--ca-brand)]">— {currentQuote.author}</p>
     </div>

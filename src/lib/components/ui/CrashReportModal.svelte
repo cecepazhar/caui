@@ -57,7 +57,7 @@
       role="dialog"
       aria-modal="true"
       aria-labelledby="crash-modal-title"
-      class="relative w-full max-w-lg rounded-2xl border border-[var(--ca-border,#27272a)] bg-[var(--ca-surface-base,#141414)] shadow-2xl p-6 text-left space-y-4 text-xs text-[var(--ca-text-primary,#fafafa)] animate-in fade-in zoom-in-95"
+      class="relative w-full max-w-lg rounded-2xl border border-[var(--ca-border)] bg-[var(--ca-surface-base)] shadow-2xl p-6 text-left space-y-4 text-xs text-[var(--ca-text-primary)] animate-in fade-in zoom-in-95"
     >
       <div class="flex items-start gap-3">
         <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500 shrink-0">
@@ -67,28 +67,28 @@
         </div>
 
         <div class="flex-1 min-w-0">
-          <h3 id="crash-modal-title" class="text-sm font-bold text-[var(--ca-text-primary,#fafafa)]">Application Crash Diagnostic</h3>
-          <p class="text-[11px] text-[var(--ca-text-muted,#a1a1aa)] mt-0.5 leading-relaxed">
+          <h3 id="crash-modal-title" class="text-sm font-bold text-[var(--ca-text-primary)]">Application Crash Diagnostic</h3>
+          <p class="text-[11px] text-[var(--ca-text-muted)] mt-0.5 leading-relaxed">
             A previous session ended unexpectedly. Would you like to submit an anonymous, scrubbed crash report to help us fix the issue?
           </p>
         </div>
       </div>
 
-      <div class="p-3 rounded-xl bg-[var(--ca-surface-subtle,#18181b)] border border-[var(--ca-border,#27272a)] space-y-1.5 font-mono text-[11px]">
-        <div class="flex items-center justify-between text-[var(--ca-text-muted,#71717a)]">
+      <div class="p-3 rounded-xl bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] space-y-1.5 font-mono text-[11px]">
+        <div class="flex items-center justify-between text-[var(--ca-text-muted)]">
           <span>Crash ID:</span>
-          <span class="text-[var(--ca-text-secondary,#d4d4d8)]">{report.id}</span>
+          <span class="text-[var(--ca-text-secondary)]">{report.id}</span>
         </div>
         {#if report.appName}
-          <div class="flex items-center justify-between text-[var(--ca-text-muted,#71717a)]">
+          <div class="flex items-center justify-between text-[var(--ca-text-muted)]">
             <span>Application:</span>
-            <span class="text-[var(--ca-text-secondary,#d4d4d8)]">{report.appName} v{report.appVersion || '0.1.0'}</span>
+            <span class="text-[var(--ca-text-secondary)]">{report.appName} v{report.appVersion || '0.1.0'}</span>
           </div>
         {/if}
         {#if report.os}
-          <div class="flex items-center justify-between text-[var(--ca-text-muted,#71717a)]">
+          <div class="flex items-center justify-between text-[var(--ca-text-muted)]">
             <span>Operating System:</span>
-            <span class="text-[var(--ca-text-secondary,#d4d4d8)]">{report.os}</span>
+            <span class="text-[var(--ca-text-secondary)]">{report.os}</span>
           </div>
         {/if}
       </div>
@@ -97,7 +97,7 @@
         <button
           type="button"
           onclick={() => (showDetails = !showDetails)}
-          class="text-[11px] text-[var(--ca-brand,#6366f1)] hover:underline flex items-center gap-1 cursor-pointer"
+          class="text-[11px] text-[var(--ca-brand)] hover:underline flex items-center gap-1 cursor-pointer"
         >
           <span>{showDetails ? 'Hide Diagnostic Details' : 'View Scrubbed Diagnostics'}</span>
           <svg class="w-3 h-3 transition-transform {showDetails ? 'rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -106,7 +106,7 @@
         </button>
 
         {#if showDetails}
-          <pre class="mt-2 p-3 rounded-lg bg-[var(--ca-surface-subtle,#18181b)] border border-[var(--ca-border,#27272a)] text-[10px] font-mono text-[var(--ca-text-muted,#a1a1aa)] max-h-40 overflow-y-auto whitespace-pre-wrap leading-relaxed">{report.stackTrace || 'No stack trace available.'}</pre>
+          <pre class="mt-2 p-3 rounded-lg bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] text-[10px] font-mono text-[var(--ca-text-muted)] max-h-40 overflow-y-auto whitespace-pre-wrap leading-relaxed">{report.stackTrace || 'No stack trace available.'}</pre>
         {/if}
       </div>
 
@@ -115,14 +115,14 @@
           id="never-again-crash"
           type="checkbox"
           bind:checked={neverAgain}
-          class="rounded border-[var(--ca-border,#3f3f46)] bg-[var(--ca-surface-subtle,#18181b)] text-[var(--ca-brand,#6366f1)] focus:ring-0"
+          class="rounded border-[var(--ca-border)] bg-[var(--ca-surface-subtle)] text-[var(--ca-brand)] focus:ring-0"
         />
-        <label for="never-again-crash" class="text-[11px] text-[var(--ca-text-muted,#a1a1aa)] cursor-pointer">
+        <label for="never-again-crash" class="text-[11px] text-[var(--ca-text-muted)] cursor-pointer">
           Don't ask again for future reports
         </label>
       </div>
 
-      <div class="flex items-center justify-between pt-3 border-t border-[var(--ca-border,#27272a)]">
+      <div class="flex items-center justify-between pt-3 border-t border-[var(--ca-border)]">
         <button
           type="button"
           disabled={isDeleting || isSubmitting}
@@ -136,7 +136,7 @@
           <button
             type="button"
             onclick={() => (open = false)}
-            class="px-3 py-1.5 rounded-lg text-xs font-medium text-[var(--ca-text-muted,#a1a1aa)] hover:text-[var(--ca-text-primary,#fafafa)] transition-colors cursor-pointer"
+            class="px-3 py-1.5 rounded-lg text-xs font-medium text-[var(--ca-text-muted)] hover:text-[var(--ca-text-primary)] transition-colors cursor-pointer"
           >
             Later
           </button>
@@ -144,7 +144,7 @@
             type="button"
             disabled={isSubmitting || isDeleting}
             onclick={handleSend}
-            class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-[var(--ca-brand,#6366f1)] text-white hover:opacity-90 disabled:opacity-50 transition-all cursor-pointer shadow-xs"
+            class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-[var(--ca-brand)] text-[var(--ca-brand-contrast)] hover:opacity-90 disabled:opacity-50 transition-all cursor-pointer shadow-xs"
           >
             {isSubmitting ? 'Sending...' : 'Send Anonymously'}
           </button>

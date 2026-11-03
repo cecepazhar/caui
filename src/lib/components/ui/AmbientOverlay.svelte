@@ -72,7 +72,7 @@
   // Chroma-beam conic gradient background
   const chromaBackground = $derived.by(() => {
     if (isGradientMode) {
-      return 'conic-gradient(from 0deg, transparent 0deg, transparent 200deg, var(--ca-glow-from) 240deg, var(--ca-glow-to) 280deg, var(--ca-glow-mid) 320deg, var(--ca-glow-accent) 360deg)';
+      return 'conic-gradient(from 0deg, transparent 0deg, transparent 200deg, var(--ca-glow-from) 240deg, var(--ca-glow-to) 280deg, var(--ca-brand) 320deg, var(--ca-glow-from) 360deg)';
     }
     if (effectiveBicolor) {
       return `conic-gradient(from 0deg, transparent 0deg, transparent 200deg, ${secondaryColor}88 260deg, ${secondaryColor} 300deg, ${color} 360deg)`;

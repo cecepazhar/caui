@@ -31,11 +31,11 @@
     </svg>
   </div>
 
-  <h3 class="text-base font-semibold text-[var(--ca-text-primary,#fafafa)]">{title}</h3>
-  <p class="text-xs text-[var(--ca-text-muted,#a1a1aa)] mt-1 max-w-sm leading-relaxed">{message}</p>
+  <h3 class="text-base font-semibold text-[var(--ca-text-primary)]">{title}</h3>
+  <p class="text-xs text-[var(--ca-text-muted)] mt-1 max-w-sm leading-relaxed">{message}</p>
 
   {#if code}
-    <div class="mt-3 px-3 py-1 rounded bg-[var(--ca-surface-subtle,#18181b)] border border-[var(--ca-border,#27272a)] text-[11px] font-mono text-rose-400">
+    <div class="mt-3 px-3 py-1 rounded bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] text-[11px] font-mono text-rose-400">
       Error Code: {code}
     </div>
   {/if}
@@ -48,7 +48,7 @@
     <button
       type="button"
       onclick={onretry}
-      class="mt-5 inline-flex items-center gap-2 px-4 py-2 bg-[var(--ca-surface-subtle,#27272a)] hover:bg-[var(--ca-border,#3f3f46)] text-[var(--ca-text-primary,#fafafa)] rounded-lg text-xs font-semibold transition-all border border-[var(--ca-border,#3f3f46)] cursor-pointer"
+      class="mt-5 inline-flex items-center gap-2 px-4 py-2 bg-[var(--ca-surface-subtle)] hover:bg-[var(--ca-border)] text-[var(--ca-text-primary)] rounded-lg text-xs font-semibold transition-all border border-[var(--ca-border)] cursor-pointer"
     >
       <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />

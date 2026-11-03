@@ -46,7 +46,7 @@
       <p>
         Version <span class="font-mono text-[var(--ca-text-primary)]">{version}</span>
       </p>
-      <div class="pt-2 border-t border-[var(--ca-border)] text-xs text-[var(--ca-text-muted, #71717a)]">
+      <div class="pt-2 border-t border-[var(--ca-border)] text-xs text-[var(--ca-text-muted)]">
         Created by <span class="font-semibold text-[var(--ca-text-primary)]">Cecep Saeful Azhar Hidayat, ST</span><br>
         <a href="https://cecepazhar.com" target="_blank" rel="noreferrer" class="hover:underline text-[var(--ca-brand)]">cecepazhar.com</a> • <a href="mailto:hi@cecepazhar.com" class="hover:underline">hi@cecepazhar.com</a> • 0852 2069 6117
       </div>
@@ -57,7 +57,7 @@
     <button
       type="button"
       onclick={dismiss}
-      class="px-4 py-2 text-sm font-semibold rounded-lg bg-[var(--ca-brand)] text-white hover:opacity-90 transition-opacity duration-[var(--ca-motion-duration-fast)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ca-brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ca-surface)]"
+      class="px-4 py-2 text-sm font-semibold rounded-lg bg-[var(--ca-brand)] text-[var(--ca-brand-contrast)] hover:opacity-90 transition-opacity duration-[var(--ca-motion-duration-fast)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ca-brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ca-surface)]"
     >
       Close
     </button>

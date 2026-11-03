@@ -130,7 +130,7 @@
               {status === 'complete'
                 ? 'bg-[var(--ca-success)] text-white'
                 : status === 'current'
-                  ? 'bg-[var(--ca-brand)] text-white ring-2 ring-[var(--ca-brand)] ring-offset-2 ring-offset-[var(--ca-surface)]'
+                  ? 'bg-[var(--ca-brand)] text-[var(--ca-brand-contrast)] ring-2 ring-[var(--ca-brand)] ring-offset-2 ring-offset-[var(--ca-surface)]'
                   : 'bg-[var(--ca-surface-subtle)] text-[var(--ca-text-muted)] border border-[var(--ca-border)]'}"
           >
             {#if status === 'complete'}

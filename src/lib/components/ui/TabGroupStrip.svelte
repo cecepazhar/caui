@@ -32,7 +32,7 @@
   {#each groups as group (group.id)}
     {@const isActive = group.id === activeId}
     <div
-      class="group flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs transition-all cursor-pointer {isActive ? 'bg-[var(--ca-surface-subtle,#18181b)] border-[var(--ca-brand,#6366f1)] text-[var(--ca-text-primary,#fafafa)] shadow-sm' : 'bg-[var(--ca-surface-base,#0a0a0a)] border-[var(--ca-border,#27272a)] text-[var(--ca-text-muted,#a1a1aa)] hover:text-[var(--ca-text-primary,#fafafa)] hover:border-[var(--ca-border-strong,#3f3f46)]'}"
+      class="group flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs transition-all cursor-pointer {isActive ? 'bg-[var(--ca-surface-subtle)] border-[var(--ca-brand)] text-[var(--ca-text-primary)] shadow-sm' : 'bg-[var(--ca-surface-base)] border-[var(--ca-border)] text-[var(--ca-text-muted)] hover:text-[var(--ca-text-primary)] hover:border-[var(--ca-border-strong)]'}"
       onclick={() => onSelect?.(group.id)}
       role="tab"
       aria-selected={isActive}
@@ -47,7 +47,7 @@
       <span class="font-medium truncate max-w-[120px]">{group.name}</span>
 
       {#if (group.paneCount ?? 1) > 1}
-        <span class="px-1.5 py-0.2 rounded text-[10px] font-mono bg-[var(--ca-surface-subtle,#27272a)] text-[var(--ca-text-muted,#a1a1aa)]">
+        <span class="px-1.5 py-0.2 rounded text-[10px] font-mono bg-[var(--ca-surface-subtle)] text-[var(--ca-text-muted)]">
           {group.paneCount} {group.splitDirection === 'horizontal' ? 'H' : 'V'}
         </span>
       {/if}
@@ -55,7 +55,7 @@
       {#if onClose}
         <button
           type="button"
-          class="opacity-0 group-hover:opacity-100 p-0.5 rounded text-[var(--ca-text-muted,#a1a1aa)] hover:text-rose-400 hover:bg-[var(--ca-surface-subtle,#27272a)] transition-opacity"
+          class="opacity-0 group-hover:opacity-100 p-0.5 rounded text-[var(--ca-text-muted)] hover:text-rose-400 hover:bg-[var(--ca-surface-subtle)] transition-opacity"
           title="Close group"
           aria-label="Close group"
           onclick={(e) => {
@@ -75,7 +75,7 @@
     <button
       type="button"
       onclick={onAdd}
-      class="flex items-center justify-center p-1.5 rounded-lg border border-dashed border-[var(--ca-border,#27272a)] text-[var(--ca-text-muted,#a1a1aa)] hover:text-[var(--ca-text-primary,#fafafa)] hover:border-[var(--ca-border-strong,#52525b)] transition-colors cursor-pointer"
+      class="flex items-center justify-center p-1.5 rounded-lg border border-dashed border-[var(--ca-border)] text-[var(--ca-text-muted)] hover:text-[var(--ca-text-primary)] hover:border-[var(--ca-border-strong)] transition-colors cursor-pointer"
       title={addLabel}
       aria-label={addLabel}
     >

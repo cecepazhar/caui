@@ -36,7 +36,7 @@
   let error = $state<string | null>(null);
 
   const submitLabel: Record<FeedbackModalVariant, string> = {
-    primary: 'bg-[var(--ca-brand)] text-white hover:opacity-90',
+    primary: 'bg-[var(--ca-brand)] text-[var(--ca-brand-contrast)] hover:opacity-90',
     secondary: 'bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] text-[var(--ca-text-primary)] hover:opacity-80',
     destructive: 'bg-rose-500 text-white hover:bg-rose-600',
     ghost: 'bg-transparent text-[var(--ca-text-secondary)] hover:bg-[var(--ca-surface-subtle)]',

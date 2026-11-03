@@ -102,9 +102,9 @@ sudo nginx -t && sudo systemctl reload nginx`,
   }
 </script>
 
-<div class="flex flex-col h-[560px] w-full rounded-2xl bg-[#0E0E12] border border-[#272732] text-[#EDEDED] font-sans shadow-xl overflow-hidden {customClass}">
+<div class="flex flex-col h-[560px] w-full rounded-2xl bg-[var(--ca-surface)] border border-[var(--ca-border)] text-[var(--ca-text-primary)] font-sans shadow-xl overflow-hidden {customClass}">
   <!-- Co-pilot Header -->
-  <div class="px-4 py-3 bg-[#121217] border-b border-[#272732] flex items-center justify-between">
+  <div class="px-4 py-3 bg-[var(--ca-surface-elevated)] border-b border-[var(--ca-border)] flex items-center justify-between">
     <div class="flex items-center gap-2.5">
       <div class="w-7 h-7 rounded-lg bg-[var(--ca-brand)]/20 border border-[var(--ca-brand)]/40 flex items-center justify-center text-[var(--ca-brand)] shadow-xs">
         <Icon name="sparkles" size={14} />
@@ -142,14 +142,14 @@ sudo nginx -t && sudo systemctl reload nginx`,
         <div
           class="max-w-[85%] rounded-xl p-3 text-xs leading-relaxed {msg.role === 'user'
             ? 'bg-[var(--ca-brand)]/20 border border-[var(--ca-brand)]/40 text-white rounded-tr-none'
-            : 'bg-[#18181F] border border-[#272732] text-neutral-200 rounded-tl-none'}"
+            : 'bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] text-neutral-200 rounded-tl-none'}"
         >
           <p>{msg.content}</p>
 
           <!-- Code Snippet Block if present -->
           {#if msg.codeSnippet}
-            <div class="mt-2.5 rounded-lg bg-[#0A0A0C] border border-[#272732] overflow-hidden font-mono text-[11px]">
-              <div class="px-3 py-1 bg-[#121217] border-b border-[#272732] flex items-center justify-between text-neutral-400 text-[10px]">
+            <div class="mt-2.5 rounded-lg bg-[var(--ca-surface)] border border-[var(--ca-border)] overflow-hidden font-mono text-[11px]">
+              <div class="px-3 py-1 bg-[var(--ca-surface-elevated)] border-b border-[var(--ca-border)] flex items-center justify-between text-neutral-400 text-[10px]">
                 <span>bash</span>
                 <button
                   type="button"
@@ -166,12 +166,12 @@ sudo nginx -t && sudo systemctl reload nginx`,
 
           <!-- Action suggestions chips -->
           {#if msg.suggestedActions && msg.suggestedActions.length > 0}
-            <div class="mt-3 pt-2 border-t border-[#272732]/60 flex flex-wrap gap-1.5">
+            <div class="mt-3 pt-2 border-t border-[var(--ca-border)]/60 flex flex-wrap gap-1.5">
               {#each msg.suggestedActions as act (act)}
                 <button
                   type="button"
                   onclick={() => handleActionClick(act)}
-                  class="px-2 py-1 rounded-md bg-[#121217] hover:bg-[#20202A] border border-[#272732] text-[10px] text-[var(--ca-brand)] hover:text-white transition cursor-pointer"
+                  class="px-2 py-1 rounded-md bg-[var(--ca-surface-elevated)] hover:bg-[var(--ca-border)] border border-[var(--ca-border)] text-[10px] text-[var(--ca-brand)] hover:text-white transition cursor-pointer"
                 >
                   ⚡ {act}
                 </button>
@@ -191,8 +191,8 @@ sudo nginx -t && sudo systemctl reload nginx`,
   </div>
 
   <!-- Input Prompt Toolbar -->
-  <div class="p-3 bg-[#121217] border-t border-[#272732]">
-    <div class="flex items-end gap-2 bg-[#0A0A0C] border border-[#272732] rounded-xl p-2 focus-within:border-[var(--ca-brand)]/60 transition-colors">
+  <div class="p-3 bg-[var(--ca-surface-elevated)] border-t border-[var(--ca-border)]">
+    <div class="flex items-end gap-2 bg-[var(--ca-surface)] border border-[var(--ca-border)] rounded-xl p-2 focus-within:border-[var(--ca-brand)]/60 transition-colors">
       <textarea
         bind:value={inputPrompt}
         rows="2"

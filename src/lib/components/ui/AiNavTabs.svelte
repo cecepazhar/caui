@@ -28,7 +28,7 @@
   }: Props = $props();
 </script>
 
-<div class="border-b border-[var(--ca-border,#27272a)] flex gap-4 overflow-x-auto text-xs sm:text-sm font-medium scrollbar-none {customClass}" role="tablist">
+<div class="border-b border-[var(--ca-border)] flex gap-4 overflow-x-auto text-xs sm:text-sm font-medium scrollbar-none {customClass}" role="tablist">
   {#each tabs as tab}
     {@const isSelected = active === tab.id}
     {#if tab.href && !onselect}
@@ -37,8 +37,8 @@
         role="tab"
         aria-selected={isSelected}
         class="pb-3 whitespace-nowrap transition-colors border-b-2 {isSelected
-          ? 'border-[var(--ca-brand,#6366f1)] text-[var(--ca-text-primary,#fafafa)] font-semibold'
-          : 'border-transparent text-[var(--ca-text-muted,#a1a1aa)] hover:text-[var(--ca-text-primary,#fafafa)]'}"
+          ? 'border-[var(--ca-brand)] text-[var(--ca-text-primary)] font-semibold'
+          : 'border-transparent text-[var(--ca-text-muted)] hover:text-[var(--ca-text-primary)]'}"
       >
         {tab.label}
       </a>
@@ -49,8 +49,8 @@
         aria-selected={isSelected}
         onclick={() => onselect?.(tab.id)}
         class="pb-3 whitespace-nowrap transition-colors border-b-2 cursor-pointer {isSelected
-          ? 'border-[var(--ca-brand,#6366f1)] text-[var(--ca-text-primary,#fafafa)] font-semibold'
-          : 'border-transparent text-[var(--ca-text-muted,#a1a1aa)] hover:text-[var(--ca-text-primary,#fafafa)]'}"
+          ? 'border-[var(--ca-brand)] text-[var(--ca-text-primary)] font-semibold'
+          : 'border-transparent text-[var(--ca-text-muted)] hover:text-[var(--ca-text-primary)]'}"
       >
         {tab.label}
       </button>

@@ -25,7 +25,7 @@
 </script>
 
 <div class="flex flex-col items-center justify-center py-16 px-4 text-center {customClass}" role="region" aria-label={title}>
-  <div class="w-16 h-16 rounded-2xl bg-[var(--ca-surface-subtle,#27272a)] border border-[var(--ca-border,#3f3f46)] flex items-center justify-center text-[var(--ca-text-muted,#a1a1aa)] mb-4 shadow-inner">
+  <div class="w-16 h-16 rounded-2xl bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] flex items-center justify-center text-[var(--ca-text-muted)] mb-4 shadow-inner">
     {#if icon === 'inbox'}
       <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
@@ -49,8 +49,8 @@
     {/if}
   </div>
 
-  <h3 class="text-base font-semibold text-[var(--ca-text-primary,#fafafa)]">{title}</h3>
-  <p class="text-xs text-[var(--ca-text-muted,#a1a1aa)] mt-1 max-w-sm leading-relaxed">{description}</p>
+  <h3 class="text-base font-semibold text-[var(--ca-text-primary)]">{title}</h3>
+  <p class="text-xs text-[var(--ca-text-muted)] mt-1 max-w-sm leading-relaxed">{description}</p>
 
   {#if action}
     <div class="mt-5">
@@ -60,7 +60,7 @@
     <button
       type="button"
       onclick={onaction}
-      class="mt-5 inline-flex items-center gap-2 px-4 py-2 bg-[var(--ca-brand,#6366f1)] hover:opacity-90 text-white rounded-lg text-xs font-semibold transition-all shadow-sm cursor-pointer"
+      class="mt-5 inline-flex items-center gap-2 px-4 py-2 bg-[var(--ca-brand)] hover:opacity-90 text-[var(--ca-brand-contrast)] rounded-lg text-xs font-semibold transition-all shadow-sm cursor-pointer"
     >
       <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />

@@ -28,10 +28,10 @@
 
 <div class="flex flex-col items-center justify-center py-10 px-4 text-center {customClass}" role="status" aria-live="polite" aria-label={ariaLabel}>
   <div class="relative {sizeClasses[size]} mb-3">
-    <div class="w-full h-full rounded-full border-2 border-[var(--ca-brand,#6366f1)]/20 border-t-[var(--ca-brand,#6366f1)] animate-spin" />
+    <div class="w-full h-full rounded-full border-2 border-[var(--ca-brand)]/20 border-t-[var(--ca-brand)] animate-spin" />
   </div>
   {#if message}
-    <p class="text-xs font-medium text-[var(--ca-text-muted,#a1a1aa)]">{message}</p>
+    <p class="text-xs font-medium text-[var(--ca-text-muted)]">{message}</p>
   {/if}
   {@render children?.()}
 </div>

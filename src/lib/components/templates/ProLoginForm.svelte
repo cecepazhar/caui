@@ -60,7 +60,7 @@
   }
 </script>
 
-<div class="w-full space-y-4 text-xs text-[var(--ca-text-primary,#fafafa)] {customClass}">
+<div class="w-full space-y-4 text-xs text-[var(--ca-text-primary)] {customClass}">
   {#if mode === 'checkEmail'}
     <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 space-y-2 text-center">
       <h4 class="font-bold text-sm">Check Your Inbox</h4>
@@ -70,7 +70,7 @@
       <button
         type="button"
         onclick={() => switchMode('login')}
-        class="mt-2 text-[var(--ca-brand,#6366f1)] hover:underline font-semibold cursor-pointer"
+        class="mt-2 text-[var(--ca-brand)] hover:underline font-semibold cursor-pointer"
       >
         Back to Sign In
       </button>
@@ -79,38 +79,38 @@
     <form onsubmit={handleSubmit} class="space-y-3.5">
       {#if mode === 'register'}
         <div>
-          <label for="pro-name" class="block text-[11px] font-semibold text-[var(--ca-text-muted,#a1a1aa)] mb-1">Your Name</label>
+          <label for="pro-name" class="block text-[11px] font-semibold text-[var(--ca-text-muted)] mb-1">Your Name</label>
           <input
             id="pro-name"
             type="text"
             bind:value={name}
             placeholder="Alex Vance"
-            class="w-full px-3 py-2 bg-[var(--ca-surface-subtle,#18181b)] border border-[var(--ca-border,#27272a)] rounded-lg text-xs text-[var(--ca-text-primary,#fafafa)] focus:outline-none focus:border-[var(--ca-brand,#6366f1)]"
+            class="w-full px-3 py-2 bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] rounded-lg text-xs text-[var(--ca-text-primary)] focus:outline-none focus:border-[var(--ca-brand)]"
           />
         </div>
       {/if}
 
       <div>
-        <label for="pro-email" class="block text-[11px] font-semibold text-[var(--ca-text-muted,#a1a1aa)] mb-1">Email Address</label>
+        <label for="pro-email" class="block text-[11px] font-semibold text-[var(--ca-text-muted)] mb-1">Email Address</label>
         <input
           id="pro-email"
           type="email"
           required
           bind:value={email}
           placeholder="name@company.com"
-          class="w-full px-3 py-2 bg-[var(--ca-surface-subtle,#18181b)] border border-[var(--ca-border,#27272a)] rounded-lg text-xs text-[var(--ca-text-primary,#fafafa)] focus:outline-none focus:border-[var(--ca-brand,#6366f1)]"
+          class="w-full px-3 py-2 bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] rounded-lg text-xs text-[var(--ca-text-primary)] focus:outline-none focus:border-[var(--ca-brand)]"
         />
       </div>
 
       {#if mode !== 'forgot'}
         <div>
           <div class="flex items-center justify-between mb-1">
-            <label for="pro-password" class="text-[11px] font-semibold text-[var(--ca-text-muted,#a1a1aa)]">Password</label>
+            <label for="pro-password" class="text-[11px] font-semibold text-[var(--ca-text-muted)]">Password</label>
             {#if mode === 'login'}
               <button
                 type="button"
                 onclick={() => switchMode('forgot')}
-                class="text-[10px] text-[var(--ca-brand,#6366f1)] hover:underline cursor-pointer"
+                class="text-[10px] text-[var(--ca-brand)] hover:underline cursor-pointer"
               >
                 Forgot Password?
               </button>
@@ -122,21 +122,21 @@
             required
             bind:value={password}
             placeholder="••••••••••••"
-            class="w-full px-3 py-2 bg-[var(--ca-surface-subtle,#18181b)] border border-[var(--ca-border,#27272a)] rounded-lg text-xs text-[var(--ca-text-primary,#fafafa)] focus:outline-none focus:border-[var(--ca-brand,#6366f1)]"
+            class="w-full px-3 py-2 bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] rounded-lg text-xs text-[var(--ca-text-primary)] focus:outline-none focus:border-[var(--ca-brand)]"
           />
         </div>
       {/if}
 
       {#if mode === 'register'}
         <div>
-          <label for="pro-confirm" class="block text-[11px] font-semibold text-[var(--ca-text-muted,#a1a1aa)] mb-1">Confirm Password</label>
+          <label for="pro-confirm" class="block text-[11px] font-semibold text-[var(--ca-text-muted)] mb-1">Confirm Password</label>
           <input
             id="pro-confirm"
             type="password"
             required
             bind:value={confirm}
             placeholder="••••••••••••"
-            class="w-full px-3 py-2 bg-[var(--ca-surface-subtle,#18181b)] border border-[var(--ca-border,#27272a)] rounded-lg text-xs text-[var(--ca-text-primary,#fafafa)] focus:outline-none focus:border-[var(--ca-brand,#6366f1)]"
+            class="w-full px-3 py-2 bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] rounded-lg text-xs text-[var(--ca-text-primary)] focus:outline-none focus:border-[var(--ca-brand)]"
           />
         </div>
       {/if}
@@ -152,7 +152,7 @@
       <button
         type="submit"
         disabled={busy}
-        class="w-full py-2.5 bg-[var(--ca-brand,#6366f1)] hover:opacity-90 disabled:opacity-50 text-white font-semibold rounded-lg text-xs transition-all cursor-pointer shadow-sm"
+        class="w-full py-2.5 bg-[var(--ca-brand)] hover:opacity-90 disabled:opacity-50 text-[var(--ca-brand-contrast)] font-semibold rounded-lg text-xs transition-all cursor-pointer shadow-sm"
       >
         {#if busy}
           Authenticating...
@@ -165,15 +165,15 @@
         {/if}
       </button>
 
-      <div class="text-center text-[11px] text-[var(--ca-text-muted,#71717a)] pt-2">
+      <div class="text-center text-[11px] text-[var(--ca-text-muted)] pt-2">
         {#if mode === 'login'}
           Don't have an account?
-          <button type="button" onclick={() => switchMode('register')} class="text-[var(--ca-brand,#6366f1)] hover:underline ml-1 font-semibold cursor-pointer">
+          <button type="button" onclick={() => switchMode('register')} class="text-[var(--ca-brand)] hover:underline ml-1 font-semibold cursor-pointer">
             Sign Up
           </button>
         {:else}
           Already have an account?
-          <button type="button" onclick={() => switchMode('login')} class="text-[var(--ca-brand,#6366f1)] hover:underline ml-1 font-semibold cursor-pointer">
+          <button type="button" onclick={() => switchMode('login')} class="text-[var(--ca-brand)] hover:underline ml-1 font-semibold cursor-pointer">
             Sign In
           </button>
         {/if}

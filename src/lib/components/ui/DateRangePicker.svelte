@@ -475,7 +475,7 @@
                       class="inline-flex items-center justify-center w-full h-full rounded-lg cursor-pointer transition-colors
                         {cellSizeClasses[size]} leading-none
                         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ca-brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ca-surface)]
-                        {(rangeStart || rangeEnd) ? 'bg-[var(--ca-brand)] text-white' : ''}
+                        {(rangeStart || rangeEnd) ? 'bg-[var(--ca-brand)] text-[var(--ca-brand-contrast)]' : ''}
                         {!(rangeStart || rangeEnd) && inMonth && !dateDisabled ? 'text-[var(--ca-text-primary)] hover:bg-[var(--ca-surface-subtle)]' : ''}
                         {!inMonth ? 'text-[var(--ca-text-muted)]' : ''}
                         {(disabled || dateDisabled) ? 'opacity-30 cursor-not-allowed pointer-events-none' : ''}

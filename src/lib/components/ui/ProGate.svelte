@@ -43,7 +43,7 @@
   );
 
   const buttonCls: Record<ProGateVariant, string> = {
-    primary: 'bg-[var(--ca-brand)] text-white hover:opacity-90',
+    primary: 'bg-[var(--ca-brand)] text-[var(--ca-brand-contrast)] hover:opacity-90',
     secondary:
       'bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] text-[var(--ca-text-primary)] hover:opacity-80',
     danger: 'bg-[var(--ca-danger)] text-white hover:opacity-90',

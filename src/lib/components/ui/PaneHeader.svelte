@@ -29,9 +29,9 @@
   }: Props = $props();
 </script>
 
-<div class="h-9 px-3 bg-[var(--ca-surface-base,#0a0a0a)] border-b border-[var(--ca-border,#27272a)] flex items-center justify-between shrink-0 select-none text-xs {customClass}">
+<div class="h-9 px-3 bg-[var(--ca-surface-base)] border-b border-[var(--ca-border)] flex items-center justify-between shrink-0 select-none text-xs {customClass}">
   <div class="flex items-center gap-2 min-w-0">
-    <span class="font-medium text-[var(--ca-text-primary,#fafafa)] truncate">{title}</span>
+    <span class="font-medium text-[var(--ca-text-primary)] truncate">{title}</span>
     {#if badge}
       <Badge variant="outline" class="px-1.5 py-0.5 text-[10px] font-mono">
         {badge}
@@ -48,7 +48,7 @@
       <button
         type="button"
         onclick={onSplitRight}
-        class="p-1 rounded text-[var(--ca-text-muted,#a1a1aa)] hover:text-[var(--ca-text-primary,#fafafa)] hover:bg-[var(--ca-surface-subtle,#27272a)] transition-colors cursor-pointer"
+        class="p-1 rounded text-[var(--ca-text-muted)] hover:text-[var(--ca-text-primary)] hover:bg-[var(--ca-surface-subtle)] transition-colors cursor-pointer"
         title={splitRightLabel}
         aria-label={splitRightLabel}
       >
@@ -62,7 +62,7 @@
       <button
         type="button"
         onclick={onSplitDown}
-        class="p-1 rounded text-[var(--ca-text-muted,#a1a1aa)] hover:text-[var(--ca-text-primary,#fafafa)] hover:bg-[var(--ca-surface-subtle,#27272a)] transition-colors cursor-pointer"
+        class="p-1 rounded text-[var(--ca-text-muted)] hover:text-[var(--ca-text-primary)] hover:bg-[var(--ca-surface-subtle)] transition-colors cursor-pointer"
         title={splitDownLabel}
         aria-label={splitDownLabel}
       >
@@ -76,7 +76,7 @@
       <button
         type="button"
         onclick={onClose}
-        class="p-1 rounded text-[var(--ca-text-muted,#a1a1aa)] hover:text-rose-400 hover:bg-[var(--ca-surface-subtle,#27272a)] transition-colors cursor-pointer"
+        class="p-1 rounded text-[var(--ca-text-muted)] hover:text-rose-400 hover:bg-[var(--ca-surface-subtle)] transition-colors cursor-pointer"
         title={closeLabel}
         aria-label={closeLabel}
       >

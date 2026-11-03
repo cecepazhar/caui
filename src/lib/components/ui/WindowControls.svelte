@@ -90,7 +90,7 @@
   <button
     type="button"
     onclick={handleMinimize}
-    class="p-1.5 rounded text-[var(--ca-text-muted,#a1a1aa)] hover:text-[var(--ca-text-primary,#fafafa)] hover:bg-[var(--ca-surface-subtle,#27272a)] transition-colors cursor-pointer"
+    class="p-1.5 rounded text-[var(--ca-text-muted)] hover:text-[var(--ca-text-primary)] hover:bg-[var(--ca-surface-subtle)] transition-colors cursor-pointer"
     title={minimizeLabel}
     aria-label={minimizeLabel}
   >
@@ -102,7 +102,7 @@
   <button
     type="button"
     onclick={handleMaximize}
-    class="p-1.5 rounded text-[var(--ca-text-muted,#a1a1aa)] hover:text-[var(--ca-text-primary,#fafafa)] hover:bg-[var(--ca-surface-subtle,#27272a)] transition-colors cursor-pointer"
+    class="p-1.5 rounded text-[var(--ca-text-muted)] hover:text-[var(--ca-text-primary)] hover:bg-[var(--ca-surface-subtle)] transition-colors cursor-pointer"
     title={maximizeLabel}
     aria-label={maximizeLabel}
   >
@@ -121,7 +121,7 @@
   <button
     type="button"
     onclick={handleClose}
-    class="p-1.5 rounded text-[var(--ca-text-muted,#a1a1aa)] hover:text-white hover:bg-rose-600 transition-colors cursor-pointer"
+    class="p-1.5 rounded text-[var(--ca-text-muted)] hover:text-white hover:bg-rose-600 transition-colors cursor-pointer"
     title={closeLabel}
     aria-label={closeLabel}
   >

@@ -255,7 +255,7 @@
   };
 
   const variantSelectedClasses: Record<CalendarVariant, string> = {
-    primary: 'bg-[var(--ca-brand)] text-white',
+    primary: 'bg-[var(--ca-brand)] text-[var(--ca-brand-contrast)]',
     outline: 'border border-[var(--ca-brand)] text-[var(--ca-brand)]',
   };
 

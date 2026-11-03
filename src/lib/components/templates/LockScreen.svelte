@@ -79,21 +79,21 @@
   }
 </script>
 
-<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--ca-surface-base,#0a0a0a)] text-[var(--ca-text-primary,#fafafa)] select-none {customClass}">
-  <div class="w-full max-w-sm p-8 rounded-3xl border border-[var(--ca-border,#27272a)] bg-[var(--ca-surface-base,#141414)] shadow-2xl space-y-6 text-center animate-in fade-in zoom-in-95">
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--ca-surface-base)] text-[var(--ca-text-primary)] select-none {customClass}">
+  <div class="w-full max-w-sm p-8 rounded-3xl border border-[var(--ca-border)] bg-[var(--ca-surface-base)] shadow-2xl space-y-6 text-center animate-in fade-in zoom-in-95">
     <!-- Brand badge -->
-    <div class="mx-auto w-12 h-12 rounded-2xl bg-[var(--ca-brand,#6366f1)]/15 border border-[var(--ca-brand,#6366f1)]/30 flex items-center justify-center text-[var(--ca-brand,#6366f1)] shadow-inner">
+    <div class="mx-auto w-12 h-12 rounded-2xl bg-[var(--ca-brand)]/15 border border-[var(--ca-brand)]/30 flex items-center justify-center text-[var(--ca-brand)] shadow-inner">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
       </svg>
     </div>
 
     <div>
-      <h2 class="text-xl font-bold tracking-tight text-[var(--ca-text-primary,#fafafa)]">
+      <h2 class="text-xl font-bold tracking-tight text-[var(--ca-text-primary)]">
         {isSetup ? 'Setup Master Vault' : title}
       </h2>
-      <p class="text-xs text-[var(--ca-text-muted,#a1a1aa)] mt-1">
-        {appName} <span class="font-mono text-[10px] text-[var(--ca-text-muted,#71717a)]">v{appVersion}</span>
+      <p class="text-xs text-[var(--ca-text-muted)] mt-1">
+        {appName} <span class="font-mono text-[10px] text-[var(--ca-text-muted)]">v{appVersion}</span>
       </p>
     </div>
 
@@ -106,19 +106,19 @@
     <form onsubmit={handleSubmit} class="space-y-4 text-left">
       {#if isSetup}
         <div>
-          <label for="lock-name" class="block text-[11px] font-semibold text-[var(--ca-text-muted,#a1a1aa)] mb-1">Your Name</label>
+          <label for="lock-name" class="block text-[11px] font-semibold text-[var(--ca-text-muted)] mb-1">Your Name</label>
           <input
             id="lock-name"
             type="text"
             bind:value={name}
             placeholder="Operator"
-            class="w-full px-3 py-2.5 bg-[var(--ca-surface-subtle,#18181b)] border border-[var(--ca-border,#27272a)] rounded-xl text-xs text-[var(--ca-text-primary,#fafafa)] focus:outline-none focus:border-[var(--ca-brand,#6366f1)]"
+            class="w-full px-3 py-2.5 bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] rounded-xl text-xs text-[var(--ca-text-primary)] focus:outline-none focus:border-[var(--ca-brand)]"
           />
         </div>
       {/if}
 
       <div>
-        <label for="lock-pass" class="block text-[11px] font-semibold text-[var(--ca-text-muted,#a1a1aa)] mb-1">
+        <label for="lock-pass" class="block text-[11px] font-semibold text-[var(--ca-text-muted)] mb-1">
           {isSetup ? 'Create Master Password' : 'Enter Master Password'}
         </label>
         <div class="relative">
@@ -128,12 +128,12 @@
             bind:value={password}
             disabled={lockoutRemaining > 0}
             placeholder="••••••••••••"
-            class="w-full pl-3 pr-10 py-2.5 bg-[var(--ca-surface-subtle,#18181b)] border border-[var(--ca-border,#27272a)] rounded-xl text-xs text-[var(--ca-text-primary,#fafafa)] focus:outline-none focus:border-[var(--ca-brand,#6366f1)] disabled:opacity-50"
+            class="w-full pl-3 pr-10 py-2.5 bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] rounded-xl text-xs text-[var(--ca-text-primary)] focus:outline-none focus:border-[var(--ca-brand)] disabled:opacity-50"
           />
           <button
             type="button"
             onclick={() => (showPassword = !showPassword)}
-            class="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-[var(--ca-text-muted,#a1a1aa)] hover:text-white cursor-pointer"
+            class="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-[var(--ca-text-muted)] hover:text-white cursor-pointer"
             aria-label={showPassword ? 'Hide password' : 'Show password'}
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -147,7 +147,7 @@
       <button
         type="submit"
         disabled={isLoading || lockoutRemaining > 0}
-        class="w-full py-2.5 bg-[var(--ca-brand,#6366f1)] hover:opacity-90 disabled:opacity-50 text-white font-semibold rounded-xl text-xs transition-all cursor-pointer shadow-md shadow-[var(--ca-brand,#6366f1)]/20"
+        class="w-full py-2.5 bg-[var(--ca-brand)] hover:opacity-90 disabled:opacity-50 text-[var(--ca-brand-contrast)] font-semibold rounded-xl text-xs transition-all cursor-pointer shadow-md shadow-[var(--ca-brand)]/20"
       >
         {#if isLoading}
           Verifying...
@@ -161,7 +161,7 @@
       </button>
     </form>
 
-    <div class="flex items-center justify-between text-[11px] text-[var(--ca-text-muted,#71717a)] pt-2 border-t border-[var(--ca-border,#27272a)]">
+    <div class="flex items-center justify-between text-[11px] text-[var(--ca-text-muted)] pt-2 border-t border-[var(--ca-border)]">
       {#if !isSetup && onreset}
         <button
           type="button"

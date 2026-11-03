@@ -41,10 +41,10 @@
   }
 </script>
 
-<div class="w-full max-w-md mx-auto p-8 rounded-2xl bg-[#121217] border border-[#272732] text-[#EDEDED] font-sans shadow-2xl {customClass}">
+<div class="w-full max-w-md mx-auto p-8 rounded-2xl bg-[var(--ca-surface-elevated)] border border-[var(--ca-border)] text-[var(--ca-text-primary)] font-sans shadow-2xl {customClass}">
   <!-- Brand Header -->
   <div class="text-center mb-6 space-y-2">
-    <div class="w-12 h-12 rounded-xl bg-[#18181F] border border-[#272732] flex items-center justify-center mx-auto text-[var(--ca-brand)] shadow-inner">
+    <div class="w-12 h-12 rounded-xl bg-[var(--ca-surface-subtle)] border border-[var(--ca-border)] flex items-center justify-center mx-auto text-[var(--ca-brand)] shadow-inner">
       <Icon name="lock" size={22} />
     </div>
     <h2 class="text-xl font-bold text-white tracking-tight">{title}</h2>
@@ -62,7 +62,7 @@
     <div class="space-y-2 mb-6">
       <Button
         variant="outline"
-        class="w-full justify-center text-xs py-2 bg-[#18181F]/80 hover:bg-[#20202A] border-[#272732]"
+        class="w-full justify-center text-xs py-2 bg-[var(--ca-surface-subtle)]/80 hover:bg-[var(--ca-border)] border-[var(--ca-border)]"
         onclick={() => onsso?.('gcc')}
       >
         <span class="w-2 h-2 rounded-full bg-emerald-500 mr-1.5"></span>
@@ -71,7 +71,7 @@
       <div class="grid grid-cols-2 gap-2">
         <Button
           variant="outline"
-          class="w-full justify-center text-xs py-2 bg-[#18181F]/40 border-[#272732]"
+          class="w-full justify-center text-xs py-2 bg-[var(--ca-surface-subtle)]/40 border-[var(--ca-border)]"
           onclick={() => onsso?.('github')}
         >
           <Icon name="code" size={14} />
@@ -79,7 +79,7 @@
         </Button>
         <Button
           variant="outline"
-          class="w-full justify-center text-xs py-2 bg-[#18181F]/40 border-[#272732]"
+          class="w-full justify-center text-xs py-2 bg-[var(--ca-surface-subtle)]/40 border-[var(--ca-border)]"
           onclick={() => onsso?.('google')}
         >
           <Icon name="globe" size={14} />
@@ -88,9 +88,9 @@
       </div>
 
       <div class="relative flex py-2 items-center">
-        <div class="flex-grow border-t border-[#272732]"></div>
+        <div class="flex-grow border-t border-[var(--ca-border)]"></div>
         <span class="shrink-0 mx-3 text-[10px] uppercase font-mono text-neutral-400">or email auth</span>
-        <div class="flex-grow border-t border-[#272732]"></div>
+        <div class="flex-grow border-t border-[var(--ca-border)]"></div>
       </div>
     </div>
   {/if}
@@ -139,7 +139,7 @@
         <input
           type="checkbox"
           bind:checked={rememberMe}
-          class="rounded border-neutral-700 bg-[#18181F] text-[var(--ca-brand)] focus:ring-0 focus:ring-offset-0 cursor-pointer"
+          class="rounded border-neutral-700 bg-[var(--ca-surface-subtle)] text-[var(--ca-brand)] focus:ring-0 focus:ring-offset-0 cursor-pointer"
         />
         <span>Remember this workstation</span>
       </label>
@@ -155,7 +155,7 @@
     </Button>
   </form>
 
-  <div class="mt-6 pt-4 border-t border-[#272732] text-center text-xs text-neutral-400">
+  <div class="mt-6 pt-4 border-t border-[var(--ca-border)] text-center text-xs text-neutral-400">
     Don't have a team vault?
     <button type="button" class="text-[var(--ca-brand)] font-medium hover:underline ml-1 cursor-pointer">
       Create Organization

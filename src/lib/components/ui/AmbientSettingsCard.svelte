@@ -47,28 +47,28 @@
   }
 </script>
 
-<div class="bg-[var(--ca-surface-base,#141414)] border border-[var(--ca-border,#27272a)] rounded-xl p-6 shadow-sm text-[var(--ca-text-primary,#fafafa)] space-y-6 {customClass}">
+<div class="bg-[var(--ca-surface-base)] border border-[var(--ca-border)] rounded-xl p-6 shadow-sm text-[var(--ca-text-primary)] space-y-6 {customClass}">
   <div class="flex items-start justify-between gap-4">
     <div class="space-y-1">
       <div class="flex items-center gap-2">
-        <h3 class="text-sm font-semibold tracking-tight text-[var(--ca-text-primary,#fafafa)]">Ambient Underglow & Lighting</h3>
+        <h3 class="text-sm font-semibold tracking-tight text-[var(--ca-text-primary)]">Ambient Underglow & Lighting</h3>
         {#if isPro}
           <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-500 border border-amber-500/30 uppercase tracking-wide">
             PRO Founder
           </span>
         {:else}
-          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[var(--ca-surface-subtle,#27272a)] text-[var(--ca-text-muted,#71717a)] border border-[var(--ca-border,#3f3f46)] uppercase tracking-wide">
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[var(--ca-surface-subtle)] text-[var(--ca-text-muted)] border border-[var(--ca-border)] uppercase tracking-wide">
             PRO Feature
           </span>
         {/if}
       </div>
-      <p class="text-xs text-[var(--ca-text-muted,#a1a1aa)] max-w-xl leading-relaxed">
+      <p class="text-xs text-[var(--ca-text-muted)] max-w-xl leading-relaxed">
         GPU-accelerated ambient rim glow surrounding the workspace. Supports solid colors, breathing accents, and dynamic RGB cycles.
       </p>
     </div>
 
     <div class="flex items-center gap-3">
-      <span class="text-xs font-medium text-[var(--ca-text-muted,#a1a1aa)]">
+      <span class="text-xs font-medium text-[var(--ca-text-muted)]">
         {enabled && isPro ? 'Active' : 'Disabled'}
       </span>
       <button
@@ -77,7 +77,7 @@
         aria-checked={enabled}
         disabled={!isPro}
         onclick={() => { enabled = !enabled; triggerUpdate(); }}
-        class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed {enabled && isPro ? 'bg-[var(--ca-brand,#6366f1)]' : 'bg-[var(--ca-surface-subtle,#27272a)]'}"
+        class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed {enabled && isPro ? 'bg-[var(--ca-brand)]' : 'bg-[var(--ca-surface-subtle)]'}"
       >
         <span
           class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out {enabled && isPro ? 'translate-x-5' : 'translate-x-0'}"
@@ -87,15 +87,15 @@
   </div>
 
   {#if isPro}
-    <div class="space-y-4 pt-2 border-t border-[var(--ca-border,#27272a)]">
+    <div class="space-y-4 pt-2 border-t border-[var(--ca-border)]">
       <div>
-        <label for="ambient-color-swatches" class="block text-xs font-medium text-[var(--ca-text-secondary,#d4d4d8)] mb-2">Preset Accent Swatches</label>
+        <label for="ambient-color-swatches" class="block text-xs font-medium text-[var(--ca-text-secondary)] mb-2">Preset Accent Swatches</label>
         <div id="ambient-color-swatches" class="flex flex-wrap gap-2.5">
           {#each presets as preset}
             <button
               type="button"
               onclick={() => selectPreset(preset.hex)}
-              class="w-7 h-7 rounded-full transition-transform hover:scale-110 flex items-center justify-center cursor-pointer border border-white/20 shadow-xs {accentColor === preset.hex ? 'ring-2 ring-white ring-offset-2 ring-offset-[#141414]' : ''}"
+              class="w-7 h-7 rounded-full transition-transform hover:scale-110 flex items-center justify-center cursor-pointer border border-white/20 shadow-xs {accentColor === preset.hex ? 'ring-2 ring-white ring-offset-2 ring-offset-[var(--ca-surface)]' : ''}"
               style="background-color: {preset.hex}"
               title={preset.name}
               aria-label={preset.name}
@@ -120,7 +120,7 @@
           <button
             type="button"
             onclick={() => { mode = m.id as any; triggerUpdate(); }}
-            class="px-3 py-2 rounded-lg border text-xs font-medium transition-all cursor-pointer {mode === m.id ? 'bg-[var(--ca-brand,#6366f1)]/15 border-[var(--ca-brand,#6366f1)] text-[var(--ca-brand,#6366f1)] font-semibold' : 'bg-[var(--ca-surface-subtle,#18181b)] border-[var(--ca-border,#27272a)] text-[var(--ca-text-muted,#a1a1aa)] hover:text-white'}"
+            class="px-3 py-2 rounded-lg border text-xs font-medium transition-all cursor-pointer {mode === m.id ? 'bg-[var(--ca-brand)]/15 border-[var(--ca-brand)] text-[var(--ca-brand)] font-semibold' : 'bg-[var(--ca-surface-subtle)] border-[var(--ca-border)] text-[var(--ca-text-muted)] hover:text-white'}"
           >
             {m.label}
           </button>

@@ -53,7 +53,7 @@
     aria-describedby={description ? descId : undefined}
     {disabled}
     onclick={toggle}
-    class="mt-0.5 rounded border flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ca-brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ca-surface)] {sizeClasses[size].box} {checked || indeterminate ? 'bg-[var(--ca-brand)] border-[var(--ca-brand)] text-white' : 'bg-[var(--ca-surface)] border-[var(--ca-border)] hover:border-[var(--ca-text-muted)]'}"
+    class="mt-0.5 rounded border flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ca-brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ca-surface)] {sizeClasses[size].box} {checked || indeterminate ? 'bg-[var(--ca-brand)] border-[var(--ca-brand)] text-[var(--ca-brand-contrast)]' : 'bg-[var(--ca-surface)] border-[var(--ca-border)] hover:border-[var(--ca-text-muted)]'}"
   >
     {#if indeterminate && !checked}
       <svg class="{sizeClasses[size].icon} stroke-current stroke-2 fill-none" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>

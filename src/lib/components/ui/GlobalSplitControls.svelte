@@ -28,13 +28,13 @@
   }
 </script>
 
-<div class="flex items-center gap-1 p-1 bg-[var(--ca-surface-base,#0a0a0a)] border border-[var(--ca-border,#27272a)] rounded-lg select-none {customClass}" role="group" aria-label="Split layout options">
+<div class="flex items-center gap-1 p-1 bg-[var(--ca-surface-base)] border border-[var(--ca-border)] rounded-lg select-none {customClass}" role="group" aria-label="Split layout options">
   {#each options as opt}
     <button
       type="button"
       disabled={groupCount < opt.minGroups}
       onclick={() => selectLayout(opt.value)}
-      class="px-2 py-1 flex items-center gap-1 rounded text-xs font-medium transition-colors disabled:opacity-30 cursor-pointer {layout === opt.value ? 'bg-[var(--ca-brand,#6366f1)] text-white shadow-xs' : 'text-[var(--ca-text-muted,#a1a1aa)] hover:text-[var(--ca-text-primary,#fafafa)] hover:bg-[var(--ca-surface-subtle,#27272a)]'}"
+      class="px-2 py-1 flex items-center gap-1 rounded text-xs font-medium transition-colors disabled:opacity-30 cursor-pointer {layout === opt.value ? 'bg-[var(--ca-brand)] text-[var(--ca-brand-contrast)] shadow-xs' : 'text-[var(--ca-text-muted)] hover:text-[var(--ca-text-primary)] hover:bg-[var(--ca-surface-subtle)]'}"
       title={`${opt.label} View`}
       aria-label={`${opt.label} View`}
     >

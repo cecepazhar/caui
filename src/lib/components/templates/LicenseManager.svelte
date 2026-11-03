@@ -45,7 +45,7 @@
   const inputCls =
     'w-full rounded-[var(--ca-radius-md)] border border-[var(--ca-border)] bg-[var(--ca-surface)] px-3 py-2 font-mono text-xs text-[var(--ca-text-primary)] placeholder:text-[var(--ca-text-muted)] focus-visible:outline-none focus-visible:border-[var(--ca-brand)]';
   const btnPrimary =
-    'w-full rounded-[var(--ca-radius-md)] bg-[var(--ca-brand)] px-4 py-2 text-xs font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ca-brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ca-surface)]';
+    'w-full rounded-[var(--ca-radius-md)] bg-[var(--ca-brand)] px-4 py-2 text-xs font-semibold text-[var(--ca-brand-contrast)] transition-opacity hover:opacity-90 disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ca-brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ca-surface)]';
   const btnSecondary =
     'w-full rounded-[var(--ca-radius-md)] border border-[var(--ca-border)] bg-[var(--ca-surface-subtle)] px-4 py-2 text-xs font-semibold text-[var(--ca-text-primary)] transition-colors hover:border-[var(--ca-border-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ca-brand)]';
 </script>

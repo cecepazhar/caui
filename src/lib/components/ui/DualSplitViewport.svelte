@@ -58,13 +58,13 @@
 
 <div class="h-full w-full overflow-hidden {customClass}">
   {#if groups.length === 0}
-    <div class="h-full flex items-center justify-center border border-dashed border-[var(--ca-border,#27272a)] rounded-xl text-[var(--ca-text-muted,#71717a)] text-xs">
+    <div class="h-full flex items-center justify-center border border-dashed border-[var(--ca-border)] rounded-xl text-[var(--ca-text-muted)] text-xs">
       {emptyMessage}
     </div>
   {:else}
     <div class={macroContainerClass}>
       {#each groups as group (group.id)}
-        <div class="{groupInPaneClass(group)} flex flex-col rounded-lg border border-[var(--ca-border,#27272a)] overflow-hidden bg-[var(--ca-surface-base,#0a0a0a)]/50">
+        <div class="{groupInPaneClass(group)} flex flex-col rounded-lg border border-[var(--ca-border)] overflow-hidden bg-[var(--ca-surface-base)]/50">
           <div class="flex-1 min-h-0 min-w-0 {getMicroSplitClass(group)}">
             {#each group.panes as pane (pane.id || pane)}
               <div class="flex-1 min-h-0 min-w-0 h-full w-full overflow-hidden flex flex-col">
