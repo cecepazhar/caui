@@ -4,6 +4,7 @@ export * from './components/templates/index.js';
 export { default as PageHeader, type PageHeaderAccent } from './components/PageHeader.svelte';
 export * from './i18n.svelte';
 export * from './theme';
+export * from './license';
 import './tokens/tokens.css';
 
 // Shared type vocabulary

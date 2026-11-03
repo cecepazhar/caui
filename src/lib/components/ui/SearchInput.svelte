@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import type { ComponentSize } from './types';
-  import { uid, clickOutside } from '../../utils/a11y';
+  import { uid } from '../../utils/a11y';
 
   export type SearchInputSize = Extract<ComponentSize, 'sm' | 'md' | 'lg'>;
 
@@ -38,7 +38,6 @@
     searchIcon,
   }: Props = $props();
 
-  let container = $state<HTMLElement>();
   let iconId = $derived(uid('search-icon'));
 
   const sizeClasses: Record<SearchInputSize, string> = {
@@ -56,7 +55,7 @@
   }
 </script>
 
-<div class="flex flex-col gap-1.5 w-full {customClass}" bind:this={container} use:clickOutside>
+<div class="flex flex-col gap-1.5 w-full {customClass}">
   {#if label}
     <label for={id} class="text-xs font-medium text-[var(--ca-text-secondary)]">{label}</label>
   {/if}

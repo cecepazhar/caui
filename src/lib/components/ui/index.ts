@@ -83,6 +83,7 @@ export { default as ProfileMenu } from './ProfileMenu.svelte';
 export { default as BottomNav } from './BottomNav.svelte';
 export { default as AllMenusSheet } from './AllMenusSheet.svelte';
 export { default as ProGate } from './ProGate.svelte';
+export { default as ProBadge } from './ProBadge.svelte';
 export { default as AmbientGlow } from './AmbientGlow.svelte';
 export { default as HeaderQuickControls } from './HeaderQuickControls.svelte';
 export { default as FloatingAiAssistant } from './FloatingAiAssistant.svelte';

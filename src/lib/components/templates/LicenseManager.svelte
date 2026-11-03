@@ -1,75 +1,105 @@
 <script lang="ts">
-  import { saveLicense, loadLicense, exportKey, isPro, formatExpiry, activateLicense } from '$lib/license';
-  
+  import type { LicenseClient } from '../../license/client.svelte';
+  import { formatExpiry } from '../../license';
+  import { t, getLocale } from '../../i18n.svelte';
+  import ProBadge from '../ui/ProBadge.svelte';
+
+  interface Props {
+    client: LicenseClient;
+    /** Shows an extra field to paste a signed token (air-gapped activation). */
+    allowOfflineImport?: boolean;
+    class?: string;
+  }
+
+  let { client, allowOfflineImport = true, class: customClass = '' }: Props = $props();
+
   let key = $state('');
-  let status = $state<'idle' | 'loading' | 'success' | 'error'>('idle');
-  let message = $state('');
-  let license = $derived(loadLicense());
-  let pro = $derived(isPro());
-  
-  function handleActivate() {
+  let offlineToken = $state('');
+  let feedback = $state<{ ok: boolean; text: string } | null>(null);
+
+  const statusText = (s: string) => t(`pro.status_${s}`, s);
+
+  async function activate() {
     if (!key.trim()) {
-      status = 'error';
-      message = 'Masukkan kunci lisensi';
+      feedback = { ok: false, text: t('pro.license_enter_key') };
       return;
     }
-    status = 'loading';
-    activateLicense(key).then((res) => {
-      status = res.success ? 'success' : 'error';
-      message = res.message;
-      if (res.success) key = '';
-    });
+    const r = await client.activate(key);
+    feedback = { ok: r.ok, text: r.status === 'rejected' ? `${statusText(r.status)}: ${r.message}` : statusText(r.status) };
+    if (r.ok) key = '';
   }
-  
-  function handleExport() {
-    const k = exportKey();
-    if (k) {
-      navigator.clipboard.writeText(k);
-      message = 'Kunci disalin!';
-      status = 'success';
-    }
+
+  async function importOffline() {
+    const r = await client.importToken(offlineToken);
+    feedback = { ok: r.ok, text: statusText(r.status) };
+    if (r.ok) offlineToken = '';
   }
+
+  async function copyToken() {
+    const tok = await client.exportToken();
+    if (!tok) return;
+    await navigator.clipboard.writeText(tok);
+    feedback = { ok: true, text: t('pro.license_copied') };
+  }
+
+  const inputCls =
+    'w-full rounded-[var(--ca-radius-md)] border border-[var(--ca-border)] bg-[var(--ca-surface)] px-3 py-2 font-mono text-xs text-[var(--ca-text-primary)] placeholder:text-[var(--ca-text-muted)] focus-visible:outline-none focus-visible:border-[var(--ca-brand)]';
+  const btnPrimary =
+    'w-full rounded-[var(--ca-radius-md)] bg-[var(--ca-brand)] px-4 py-2 text-xs font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ca-brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ca-surface)]';
+  const btnSecondary =
+    'w-full rounded-[var(--ca-radius-md)] border border-[var(--ca-border)] bg-[var(--ca-surface-subtle)] px-4 py-2 text-xs font-semibold text-[var(--ca-text-primary)] transition-colors hover:border-[var(--ca-border-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ca-brand)]';
 </script>
 
-<div class="license-manager p-4 bg-[#121217] rounded-lg border border-[#272732]">
-  <div class="flex items-center justify-between mb-4">
-    <h3 class="text-lg font-semibold text-white">Lisensi Pro</h3>
-    {#if pro}
-      <span class="px-2 py-1 text-xs font-medium bg-green-500/20 text-green-400 rounded">Aktif</span>
+<section
+  aria-labelledby="ca-license-title"
+  class="rounded-[var(--ca-radius-lg)] border border-[var(--ca-border)] bg-[var(--ca-surface-elevated)] p-4 {customClass}"
+>
+  <header class="mb-4 flex items-center justify-between">
+    <h3 id="ca-license-title" class="text-sm font-bold text-[var(--ca-text-primary)]">{t('pro.license_title')}</h3>
+    {#if client.isPro}
+      <ProBadge tier={client.tier === 'free' ? 'pro' : client.tier} />
     {:else}
-      <span class="px-2 py-1 text-xs font-medium bg-red-500/20 text-red-400 rounded">Free</span>
+      <span class="rounded-[var(--ca-radius-sm)] border border-[var(--ca-border)] px-1.5 py-px font-mono text-[10px] uppercase text-[var(--ca-text-muted)]">{t('pro.free')}</span>
     {/if}
-  </div>
-  
-  {#if license}
-    <div class="mb-4 p-3 bg-[#0A0A0C] rounded text-sm">
-      <p class="text-neutral-400">Kunci: <code class="text-[#60A5FA]">{license.key}</code></p>
-      <p class="text-neutral-400">Produk: <span class="text-white">{license.product}</span></p>
-      <p class="text-neutral-400">Berakhir: <span class="text-white">{formatExpiry(license.expires_at)}</span></p>
+  </header>
+
+  {#if client.isPro && client.claims}
+    <dl class="mb-4 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 rounded-[var(--ca-radius-md)] bg-[var(--ca-surface)] p-3 text-xs">
+      <dt class="text-[var(--ca-text-muted)]">{t('pro.license_key')}</dt>
+      <dd class="font-mono text-[var(--ca-text-primary)]">{client.claims.key}</dd>
+      <dt class="text-[var(--ca-text-muted)]">{t('pro.license_product')}</dt>
+      <dd class="text-[var(--ca-text-primary)]">{client.claims.product}</dd>
+      <dt class="text-[var(--ca-text-muted)]">{t('pro.license_expires')}</dt>
+      <dd class="text-[var(--ca-text-primary)]">{formatExpiry(client.tier === 'lifetime' ? 0 : client.claims.exp, getLocale() === 'id' ? 'id-ID' : 'en-US')}</dd>
+    </dl>
+    <div class="grid gap-2 sm:grid-cols-2">
+      <button type="button" class={btnSecondary} onclick={copyToken}>{t('pro.license_export')}</button>
+      <button type="button" class={btnSecondary} onclick={() => client.deactivate()}>{t('pro.license_remove')}</button>
     </div>
-    <button onclick={handleExport} class="w-full py-2 px-4 bg-[#272732] hover:bg-[#2563EB] text-white rounded transition-colors">
-      Export Kunci
-    </button>
   {:else}
-    <p class="text-neutral-400 mb-4">Belum ada lisensi. Aktivasi di bawah.</p>
+    <p class="mb-3 text-xs text-[var(--ca-text-secondary)]">
+      {client.status === 'none' ? t('pro.license_none') : statusText(client.status)}
+    </p>
+    <form class="space-y-2" onsubmit={(e) => { e.preventDefault(); activate(); }}>
+      <label for="ca-license-key" class="sr-only">{t('pro.license_key')}</label>
+      <input id="ca-license-key" bind:value={key} autocomplete="off" spellcheck="false" placeholder="CAXXX-XXXXXX-X" class={inputCls} />
+      <button type="submit" disabled={client.busy} class={btnPrimary}>
+        {client.busy ? t('pro.license_activating') : t('pro.license_activate')}
+      </button>
+    </form>
+    {#if allowOfflineImport}
+      <details class="mt-3 text-xs text-[var(--ca-text-secondary)]">
+        <summary class="cursor-pointer select-none">{t('pro.license_import')}</summary>
+        <div class="mt-2 space-y-2">
+          <label for="ca-license-token" class="sr-only">{t('pro.license_import')}</label>
+          <textarea id="ca-license-token" bind:value={offlineToken} rows="3" spellcheck="false" class={inputCls}></textarea>
+          <button type="button" class={btnSecondary} onclick={importOffline}>{t('pro.license_import')}</button>
+        </div>
+      </details>
+    {/if}
   {/if}
-  
-  <div class="mt-4 space-y-2">
-    <input
-      bind:value={key}
-      placeholder="CAUI99-XXXXXX-X"
-      class="w-full px-3 py-2 bg-[#0A0A0C] border border-[#272732] rounded text-white placeholder-neutral-500 focus:outline-none focus:border-[#2563EB]"
-    />
-    <button
-      onclick={handleActivate}
-      disabled={status === 'loading'}
-      class="w-full py-2 px-4 bg-[#2563EB] hover:bg-[#60A5FA] disabled:opacity-50 text-white rounded transition-colors"
-    >
-      {status === 'loading' ? 'Mengaktifkan...' : 'Aktifkan Lisensi'}
-    </button>
-  </div>
-  
-  {#if message}
-    <p class="mt-2 text-sm {status === 'error' ? 'text-red-400' : 'text-green-400'}">{message}</p>
+
+  {#if feedback}
+    <p role="status" class="mt-3 text-xs {feedback.ok ? 'text-[var(--ca-success)]' : 'text-[var(--ca-danger)]'}">{feedback.text}</p>
   {/if}
-</div>
+</section>

@@ -6,3 +6,4 @@ export { default as ProLoginForm } from './ProLoginForm.svelte';
 export { default as ProTeamPanel } from './ProTeamPanel.svelte';
 export { default as AiSettingsForm } from './AiSettingsForm.svelte';
 export { default as LockScreen } from './LockScreen.svelte';
+export { default as LicenseManager } from './LicenseManager.svelte';
