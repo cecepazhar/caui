@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/svelte';
 import { tick } from 'svelte';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import Toast from './Toast.svelte';
-import { toast } from './toast.svelte';
+import { toast } from './toast.svelte.js';
 
 describe('Toast', () => {
   beforeEach(() => {

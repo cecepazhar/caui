@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { toast } from './toast.svelte';
+  import { toast } from './toast.svelte.js';
   import type { ComponentVariant, ComponentSize } from './types';
   import { X } from 'lucide-svelte';
 

@@ -40,7 +40,7 @@ export { default as ProgressBar } from './ProgressBar.svelte';
 export { default as CircularProgress } from './CircularProgress.svelte';
 export { default as Skeleton } from './Skeleton.svelte';
 export { default as Toast } from './Toast.svelte';
-export { toast } from './toast.svelte';
+export { toast } from './toast.svelte.js';
 export { default as PinInput } from './PinInput.svelte';
 export { default as Textarea } from './Textarea.svelte';
 export { default as Select } from './Select.svelte';
